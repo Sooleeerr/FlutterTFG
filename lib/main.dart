@@ -95,7 +95,52 @@ class Perfil extends StatelessWidget {
     return MaterialApp(
       title: 'Material App',
       home: Scaffold(
-        body: SafeArea(child: Articulo()), //TOCAR A PARTIR DE AQUI
+        body: SafeArea(
+            child: Column(
+          children: [
+            Text(
+              "Tus datos",
+              style: TextStyle(fontSize: 20),
+            ),
+            SizedBox(height: 60.0),
+            TextField(
+              decoration: InputDecoration(labelText: "Nombre"),
+            ),
+            SizedBox(height: 20.0),
+            TextField(
+              decoration: InputDecoration(labelText: "Correo"),
+            ),
+            SizedBox(height: 20.0),
+            TextField(
+              decoration: InputDecoration(labelText: "Contraseña"),
+            ),
+            SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: () {
+                // Acción a realizar cuando se presiona el botón
+                print('Botón presionado');
+              },
+              child: Text('Modificar'),
+            ),
+            SizedBox(height: 40.0),
+            Text(
+              "Tus pedidos",
+              style: TextStyle(fontSize: 20),
+            ),
+            /*Pedidos usuario*/
+            SizedBox(height: 80.0),
+            ElevatedButton(
+              onPressed: () {
+                // Acción a realizar cuando se presiona el botón
+                print('Botón presionado');
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.red,
+              ),
+              child: Text('Cerrar sesión'),
+            ),
+          ],
+        )), //TOCAR A PARTIR DE AQUI
       ),
     );
   }

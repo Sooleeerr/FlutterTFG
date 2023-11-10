@@ -28,7 +28,7 @@ class Articulo extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.centerRight,
-              child: Text("200€"),
+              child: Text("300€"),
             )
           ],
         ),
