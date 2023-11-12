@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tfg/widgets/articulo.dart';
+import 'package:tfg/widgets/login.dart';
+import 'package:tfg/widgets/perfil.dart';
 
 void main() {
-  runApp(const Perfil());
+  runApp(const Login());
 }
 
 class MyApp extends StatelessWidget {
@@ -82,65 +84,6 @@ class MyApp extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class Perfil extends StatelessWidget {
-  const Perfil({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        body: SafeArea(
-            child: Column(
-          children: [
-            Text(
-              "Tus datos",
-              style: TextStyle(fontSize: 20),
-            ),
-            SizedBox(height: 60.0),
-            TextField(
-              decoration: InputDecoration(labelText: "Nombre"),
-            ),
-            SizedBox(height: 20.0),
-            TextField(
-              decoration: InputDecoration(labelText: "Correo"),
-            ),
-            SizedBox(height: 20.0),
-            TextField(
-              decoration: InputDecoration(labelText: "Contraseña"),
-            ),
-            SizedBox(height: 20.0),
-            ElevatedButton(
-              onPressed: () {
-                // Acción a realizar cuando se presiona el botón
-                print('Botón presionado');
-              },
-              child: Text('Modificar'),
-            ),
-            SizedBox(height: 40.0),
-            Text(
-              "Tus pedidos",
-              style: TextStyle(fontSize: 20),
-            ),
-            /*Pedidos usuario*/
-            SizedBox(height: 80.0),
-            ElevatedButton(
-              onPressed: () {
-                // Acción a realizar cuando se presiona el botón
-                print('Botón presionado');
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.red,
-              ),
-              child: Text('Cerrar sesión'),
-            ),
-          ],
-        )), //TOCAR A PARTIR DE AQUI
       ),
     );
   }
