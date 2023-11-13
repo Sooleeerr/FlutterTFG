@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
+class Registro extends StatelessWidget {
+  const Registro({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class Login extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: Center(
-            child: Text("Inicia sesión"),
+            child: Text("Regístrate"),
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -53,36 +53,25 @@ class Login extends StatelessWidget {
               Container(
                 alignment: Alignment.centerLeft,
               ),
-              SizedBox(height: 100.0),
+              SizedBox(height: 40.0),
               TextField(
-                decoration: InputDecoration(labelText: "Correo"),
+                decoration: InputDecoration(labelText: "Introduce tu nombre"),
               ),
               SizedBox(height: 20.0),
               TextField(
-                decoration: InputDecoration(labelText: "Contraseña"),
+                decoration: InputDecoration(labelText: "Introduce tu correo"),
               ),
               SizedBox(height: 20.0),
+              TextField(
+                decoration:
+                    InputDecoration(labelText: "Introduce tu contraseña"),
+              ),
+              SizedBox(height: 40.0),
               ElevatedButton(
                 onPressed: () {
                   // Acción a realizar cuando se presiona el botón
                   print('Botón presionado');
                 },
-                child: Text('Acceder'),
-              ),
-              SizedBox(height: 10.0),
-              Text(
-                "¿Aún no tienes cuenta?",
-                style: TextStyle(fontSize: 14),
-              ),
-              SizedBox(height: 10.0),
-              ElevatedButton(
-                onPressed: () {
-                  // Acción a realizar cuando se presiona el botón
-                  print('Botón presionado');
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.red,
-                ),
                 child: Text('Regístrate'),
               ),
             ],

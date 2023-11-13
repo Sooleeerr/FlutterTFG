@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tfg/widgets/articulo.dart';
 import 'package:tfg/widgets/login.dart';
 import 'package:tfg/widgets/perfil.dart';
+import 'package:tfg/widgets/registro.dart';
 
 void main() {
-  runApp(const Login());
+  runApp(const Registro());
 }
 
 class MyApp extends StatelessWidget {
