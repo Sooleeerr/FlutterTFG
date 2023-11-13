@@ -51,7 +51,20 @@ class MyApp extends StatelessWidget {
           ),
         ),
         body: SafeArea(
-          child: Articulo(),
+          child: GridView.count(crossAxisCount: 2, children: <Widget>[
+            Articulo(),
+            Articulo(),
+            Articulo(),
+            Articulo(),
+            Articulo(),
+            Articulo(),
+            Articulo(),
+            Articulo(),
+            Articulo(),
+            Articulo(),
+            Articulo(),
+            Articulo(),
+          ]),
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const [

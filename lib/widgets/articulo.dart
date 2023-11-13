@@ -9,26 +9,37 @@ class Articulo extends StatelessWidget {
       padding: EdgeInsets.all(20),
       child: Container(
         padding: EdgeInsets.all(10),
-        decoration:
-            BoxDecoration(border: Border.all(color: Colors.black, width: 3)),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            border: Border.all(
+                color: Color.fromARGB(255, 172, 170, 170), width: 2)),
         child: Column(
           children: [
-            Image(
-              image: NetworkImage(
-                  "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Iphone 12",
+            const Flexible(
+              flex: 8,
+              child: Image(
+                image: NetworkImage(
+                    "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"),
               ),
             ),
-            Container(
-              alignment: Alignment.centerRight,
-              child: Text("300€"),
+            const SizedBox(
+              height: 5,
+            ),
+            Flexible(
+              flex: 1,
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Iphone 12",
+                ),
+              ),
+            ),
+            Flexible(
+              flex: 1,
+              child: Container(
+                alignment: Alignment.centerRight,
+                child: Text("200€"),
+              ),
             )
           ],
         ),
