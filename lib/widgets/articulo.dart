@@ -8,7 +8,7 @@ class Articulo extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(20),
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10)),
             border: Border.all(

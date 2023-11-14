@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tfg/widgets/pedido.dart';
 
 class Perfil extends StatelessWidget {
   const Perfil({Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class Perfil extends StatelessWidget {
       title: 'Material App',
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Mundo móvil"),
+          title: Text("Tu perfil"),
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const [
@@ -55,7 +56,7 @@ class Perfil extends StatelessWidget {
                   style: TextStyle(fontSize: 20),
                 ),
               ),
-              SizedBox(height: 40.0),
+              SizedBox(height: 20.0),
               TextField(
                 decoration: InputDecoration(labelText: "Nombre"),
               ),
@@ -75,16 +76,7 @@ class Perfil extends StatelessWidget {
                 },
                 child: Text('Modificar'),
               ),
-              SizedBox(height: 40.0),
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Tus pedidos",
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
-              /*Pedidos usuario*/
-              SizedBox(height: 80.0),
+              SizedBox(height: 20.0),
               ElevatedButton(
                 onPressed: () {
                   // Acción a realizar cuando se presiona el botón
@@ -94,6 +86,36 @@ class Perfil extends StatelessWidget {
                   primary: Colors.red,
                 ),
                 child: Text('Cerrar sesión'),
+              ),
+              SizedBox(height: 20.0),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Tus pedidos",
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+              Flexible(
+                //flex: 9,
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black, width: 2),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: GridView.count(
+                    crossAxisCount: 1,
+                    padding: EdgeInsets.all(20),
+                    mainAxisSpacing: 10,
+                    childAspectRatio: 20,
+                    children: <Widget>[
+                      Pedido(),
+                      Pedido(),
+                      Pedido(),
+                      Pedido(),
+                      Pedido(),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
