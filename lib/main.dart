@@ -4,12 +4,10 @@ import 'package:tfg/widgets/articuloDetallePedido.dart';
 import 'package:tfg/widgets/articulosPromocion.dart';
 import 'package:tfg/widgets/detalleArticulo.dart';
 import 'package:tfg/widgets/detallePedido.dart';
+import 'package:tfg/widgets/listaArticulos.dart';
 import 'package:tfg/widgets/login.dart';
 import 'package:tfg/widgets/perfil.dart';
 import 'package:tfg/widgets/registro.dart';
-
-import 'models/ArticuloModel.dart';
-import 'services/ApiService.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,32 +21,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late List<ArticuloModel>? _listaArticulosModel = [];
   int _selectedIndex = 0;
-  static const List<Widget> _pages = <Widget>[
-    Icon(
-      Icons.call,
-      size: 150,
-    ),
-    Icon(
-      Icons.camera,
-      size: 150,
-    ),
-    Icon(
-      Icons.chat,
-      size: 150,
-    ),
-  ];
 
   @override
   void initState() {
     super.initState();
-    _getData();
-  }
-
-  void _getData() async {
-    _listaArticulosModel = (await ApiService().getListaArticulos())!;
-    Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
   }
 
   void _onItemTapped(int index) {
@@ -59,6 +36,19 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> _pages = <Widget>[
+      ListaArticulos(),
+      ListaArticulosPromocion(),
+      Icon(
+        Icons.camera,
+        size: 150,
+      ),
+      Icon(
+        Icons.chat,
+        size: 150,
+      ),
+    ];
+
     return MaterialApp(
       title: 'Material App',
       home: Scaffold(
@@ -97,17 +87,10 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
         body: SafeArea(
-          child: _listaArticulosModel == null || _listaArticulosModel!.isEmpty
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : GridView.count(
-                  crossAxisCount: 2,
-                  children:
-                      List.generate(_listaArticulosModel!.length, (index) {
-                    return Articulo(articulo: _listaArticulosModel![index]);
-                  }),
-                ),
+          child: IndexedStack(
+            index: _selectedIndex,
+            children: _pages,
+          ),
         ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex,

@@ -3,24 +3,23 @@ import 'package:tfg/widgets/articulo.dart';
 import '../models/ArticuloModel.dart';
 import '../services/ApiService.dart';
 
-class ListaArticulosPromocion extends StatefulWidget {
-  const ListaArticulosPromocion({Key? key}) : super(key: key);
+class ListaArticulos extends StatefulWidget {
+  const ListaArticulos({Key? key}) : super(key: key);
 
   @override
-  State<ListaArticulosPromocion> createState() =>
-      _ListaArticulosPromocionState();
+  State<ListaArticulos> createState() => _ListaArticulosState();
 }
 
-class _ListaArticulosPromocionState extends State<ListaArticulosPromocion> {
+class _ListaArticulosState extends State<ListaArticulos> {
   late List<ArticuloModel>? _listaArticulosModel = [];
   @override
   void initState() {
     super.initState();
-    _getDataListaArticulosPromocion();
+    _getDataListaArticulos();
   }
 
-  void _getDataListaArticulosPromocion() async {
-    _listaArticulosModel = (await ApiService().getListaArticulosPromocion())!;
+  void _getDataListaArticulos() async {
+    _listaArticulosModel = (await ApiService().getListaArticulos())!;
     Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
   }
 
