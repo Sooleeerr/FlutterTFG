@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tfg/models/ArticuloModel.dart';
 
 class Articulo extends StatelessWidget {
-  const Articulo({Key? key}) : super(key: key);
+  final ArticuloModel articulo;
+  const Articulo({required this.articulo});
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +17,10 @@ class Articulo extends StatelessWidget {
                 color: Color.fromARGB(255, 172, 170, 170), width: 2)),
         child: Column(
           children: [
-            const Flexible(
+            Flexible(
               flex: 8,
               child: Image(
-                image: NetworkImage(
-                    "https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg"),
+                image: NetworkImage(articulo.fotoArticulo!),
               ),
             ),
             const SizedBox(
@@ -30,7 +31,7 @@ class Articulo extends StatelessWidget {
               child: Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Iphone 12",
+                  articulo.nombreArticulo!,
                 ),
               ),
             ),
@@ -38,7 +39,7 @@ class Articulo extends StatelessWidget {
               flex: 1,
               child: Container(
                 alignment: Alignment.centerRight,
-                child: Text("200€"),
+                child: Text(articulo.precioArticulo.toString() + "€"),
               ),
             )
           ],

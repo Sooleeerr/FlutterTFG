@@ -45,6 +45,7 @@ class articulosPromocion extends StatelessWidget {
         ),
         body: SafeArea(
           child: GridView.count(crossAxisCount: 2, children: <Widget>[
+            /*Articulo(),
             Articulo(),
             Articulo(),
             Articulo(),
@@ -55,8 +56,7 @@ class articulosPromocion extends StatelessWidget {
             Articulo(),
             Articulo(),
             Articulo(),
-            Articulo(),
-            Articulo(),
+            Articulo(),*/
           ]),
         ),
         bottomNavigationBar: BottomNavigationBar(

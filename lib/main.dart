@@ -8,12 +8,54 @@ import 'package:tfg/widgets/login.dart';
 import 'package:tfg/widgets/perfil.dart';
 import 'package:tfg/widgets/registro.dart';
 
+import 'models/ArticuloModel.dart';
+import 'services/ApiService.dart';
+
 void main() {
-  runApp(const detalleArticulo());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late List<ArticuloModel>? _listaArticulosModel = [];
+  int _selectedIndex = 0;
+  static const List<Widget> _pages = <Widget>[
+    Icon(
+      Icons.call,
+      size: 150,
+    ),
+    Icon(
+      Icons.camera,
+      size: 150,
+    ),
+    Icon(
+      Icons.chat,
+      size: 150,
+    ),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _getData();
+  }
+
+  void _getData() async {
+    _listaArticulosModel = (await ApiService().getListaArticulos())!;
+    Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,22 +97,21 @@ class MyApp extends StatelessWidget {
           ),
         ),
         body: SafeArea(
-          child: GridView.count(crossAxisCount: 2, children: <Widget>[
-            Articulo(),
-            Articulo(),
-            Articulo(),
-            Articulo(),
-            Articulo(),
-            Articulo(),
-            Articulo(),
-            Articulo(),
-            Articulo(),
-            Articulo(),
-            Articulo(),
-            Articulo(),
-          ]),
+          child: _listaArticulosModel == null || _listaArticulosModel!.isEmpty
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : GridView.count(
+                  crossAxisCount: 2,
+                  children:
+                      List.generate(_listaArticulosModel!.length, (index) {
+                    return Articulo(articulo: _listaArticulosModel![index]);
+                  }),
+                ),
         ),
         bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(
