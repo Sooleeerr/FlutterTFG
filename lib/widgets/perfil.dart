@@ -10,7 +10,9 @@ class Perfil extends StatelessWidget {
       title: 'Material App',
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Tu perfil"),
+          title: Center(
+            child: Text("Tu perfil"),
+          ),
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const [

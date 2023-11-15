@@ -1,19 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tfg/widgets/articulo.dart';
-import 'package:tfg/widgets/articuloDetallePedido.dart';
-import 'package:tfg/widgets/articulosPromocion.dart';
-import 'package:tfg/widgets/detalleArticulo.dart';
-import 'package:tfg/widgets/detallePedido.dart';
-import 'package:tfg/widgets/login.dart';
-import 'package:tfg/widgets/perfil.dart';
-import 'package:tfg/widgets/registro.dart';
 
-void main() {
-  runApp(const detalleArticulo());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class articulosPromocion extends StatelessWidget {
+  const articulosPromocion({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +10,7 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Mundo Móvil"),
+          title: Text("Articulos en promoción"),
         ),
         drawer: Drawer(
           child: ListView(
