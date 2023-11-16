@@ -11,7 +11,7 @@ import 'package:tfg/widgets/perfil.dart';
 import 'package:tfg/widgets/registro.dart';
 
 void main() {
-  runApp(const Carrito());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -40,14 +40,8 @@ class _MyAppState extends State<MyApp> {
     List<Widget> _pages = <Widget>[
       ListaArticulos(),
       ListaArticulosPromocion(),
-      Icon(
-        Icons.camera,
-        size: 150,
-      ),
-      Icon(
-        Icons.chat,
-        size: 150,
-      ),
+      Carrito(),
+      Perfil(),
     ];
 
     return MaterialApp(

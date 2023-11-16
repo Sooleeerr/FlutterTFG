@@ -15,7 +15,7 @@ class articuloCarrito extends StatelessWidget {
           ),
         ),
         Flexible(
-          flex: 4,
+          flex: 8,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [

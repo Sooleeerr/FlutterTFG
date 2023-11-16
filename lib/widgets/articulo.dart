@@ -12,7 +12,10 @@ class Articulo extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const detalleArticulo()),
+          MaterialPageRoute(
+              builder: (context) => DetalleArticulo(
+                    articulo: articulo,
+                  )),
         );
       },
       child: Container(

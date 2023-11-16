@@ -22,6 +22,7 @@ class ApiService {
     } catch (e) {
       log(e.toString());
     }
+    return null;
   }
 
   Future<List<ArticuloModel>?> getListaArticulosPromocion() async {
@@ -36,5 +37,6 @@ class ApiService {
     } catch (e) {
       log(e.toString());
     }
+    return null;
   }
 }
