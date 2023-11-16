@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tfg/widgets/articulo.dart';
 import 'package:tfg/widgets/articuloDetallePedido.dart';
 import 'package:tfg/widgets/articulosPromocion.dart';
+import 'package:tfg/widgets/carrito.dart';
 import 'package:tfg/widgets/detalleArticulo.dart';
 import 'package:tfg/widgets/detallePedido.dart';
 import 'package:tfg/widgets/listaArticulos.dart';
@@ -10,7 +11,7 @@ import 'package:tfg/widgets/perfil.dart';
 import 'package:tfg/widgets/registro.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Carrito());
 }
 
 class MyApp extends StatefulWidget {
