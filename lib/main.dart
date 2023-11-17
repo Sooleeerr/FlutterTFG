@@ -103,21 +103,21 @@ class _MyAppState extends State<MyApp> {
                 (Icons.discount),
               ),
               label: "Promociones",
-              backgroundColor: Colors.amber,
+              backgroundColor: Colors.blue,
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 (Icons.shopping_cart),
               ),
               label: "Carrito",
-              backgroundColor: Colors.amber,
+              backgroundColor: Colors.blue,
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 (Icons.person),
               ),
               label: "Perfil",
-              backgroundColor: Colors.amber,
+              backgroundColor: Colors.blue,
             ),
           ],
         ),

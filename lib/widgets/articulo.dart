@@ -24,11 +24,11 @@ class Articulo extends StatelessWidget {
           padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
               color: articulo.articuloPromocion == "yes"
-                  ? Colors.red
+                  ? Color.fromARGB(255, 54, 244, 149)
                   : Colors.transparent,
               borderRadius: BorderRadius.all(Radius.circular(10)),
               border: Border.all(
-                  color: Color.fromARGB(255, 172, 170, 170), width: 2)),
+                  color: Color.fromARGB(255, 171, 172, 170), width: 2)),
           child: Column(
             children: [
               Flexible(
@@ -38,22 +38,34 @@ class Articulo extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 5,
+                height: 6,
               ),
               Flexible(
-                flex: 1,
+                flex: 2,
                 child: Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     articulo.nombreArticulo!,
+                    style: TextStyle(
+                      fontFamily: "Open Sans",
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
               Flexible(
-                flex: 1,
+                flex: 2,
                 child: Container(
                   alignment: Alignment.centerRight,
-                  child: Text(articulo.precioArticulo.toString() + "€"),
+                  child: Text(
+                    articulo.precioArticulo.toString() + "€",
+                    style: TextStyle(
+                      fontFamily: "Open Sans",
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               )
             ],

@@ -15,7 +15,10 @@ class Perfil extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 "Tus datos",
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(
+                  fontSize: 20,
+                  decoration: TextDecoration.underline,
+                ),
               ),
             ),
             SizedBox(height: 20.0),
@@ -36,7 +39,13 @@ class Perfil extends StatelessWidget {
                 // Acción a realizar cuando se presiona el botón
                 print('Botón presionado');
               },
-              child: Text('Modificar'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+              ),
+              child: Text(
+                'Modificar',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
             SizedBox(height: 20.0),
             ElevatedButton(
@@ -45,16 +54,22 @@ class Perfil extends StatelessWidget {
                 print('Botón presionado');
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.red,
+                backgroundColor: Colors.red,
               ),
-              child: Text('Cerrar sesión'),
+              child: Text(
+                'Cerrar sesión',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
             SizedBox(height: 20.0),
             Container(
               alignment: Alignment.centerLeft,
               child: Text(
                 "Tus pedidos",
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(
+                  fontSize: 20,
+                  decoration: TextDecoration.underline,
+                ),
               ),
             ),
             Flexible(
