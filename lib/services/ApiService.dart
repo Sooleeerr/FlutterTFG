@@ -39,7 +39,6 @@ class ApiService {
   }
 
   Future<Respuesta> registro(nombre, email, password) async {
-    //TODO: recoger error que pase el API y pasarlo
     Respuesta respuesta = Respuesta();
     try {
       var url = Uri.parse(Constants.baseUrl +
