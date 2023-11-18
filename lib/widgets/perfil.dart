@@ -51,7 +51,7 @@ class Perfil extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // Acción a realizar cuando se presiona el botón
-                print('Botón presionado');
+                Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red,
