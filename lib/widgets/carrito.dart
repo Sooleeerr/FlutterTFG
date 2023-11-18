@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tfg/widgets/articuloCarrito.dart';
+//TODO Integración API
+//TODO Diseño
+//TODO Meter el total+hacer pedido
+//TODO Meter fucionalidad +/-
+//TODO Navegar a Detalle Articulo
 
 class Carrito extends StatelessWidget {
   const Carrito({Key? key}) : super(key: key);

@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:tfg/widgets/pedido.dart';
 
 import 'package:tfg/models/ArticuloModel.dart';
+//TODO: llamar API articuloVisitado
+//TODO: Diseño
+//TODO: Meter articulos relacionados
+//TODO: Meter articulos visitados
+//TODO: Añadir al carrito
 
 class DetalleArticulo extends StatelessWidget {
   final ArticuloModel articulo;
