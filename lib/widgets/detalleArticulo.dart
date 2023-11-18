@@ -57,14 +57,6 @@ class DetalleArticulo extends StatelessWidget {
               Text(articulo.colorArticulo!),
               Text(articulo.almacenamientoArticulo!),
               SizedBox(height: 40),
-              Text("Articulos relacionados"),
-              Container(
-                child: Row(
-                  children: [
-                    Text("Hola"),
-                  ],
-                ),
-              ),
             ],
           ),
         ),

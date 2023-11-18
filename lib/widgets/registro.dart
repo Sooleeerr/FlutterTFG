@@ -50,6 +50,7 @@ class _RegistroState extends State<Registro> {
                 TextField(
                   decoration:
                       InputDecoration(labelText: "Introduce tu contraseña"),
+                  obscureText: true,
                   onChanged: (texto) {
                     _password = texto;
                   },
@@ -71,7 +72,7 @@ class _RegistroState extends State<Registro> {
   Future<bool> _registroUsuario(nombre, email, password) async {
     registroOK = (await ApiService().registro(nombre, email, password));
 
-    Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
+    //Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
 
     return Future.value(registroOK.getRespuestaCorrecta);
   }

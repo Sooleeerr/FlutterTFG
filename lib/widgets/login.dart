@@ -90,6 +90,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 20.0),
             TextField(
               decoration: InputDecoration(labelText: "Contraseña"),
+              obscureText: true,
               onChanged: (texto) {
                 passwordTextField = texto;
               },
