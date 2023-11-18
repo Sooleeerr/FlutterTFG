@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tfg/widgets/pedido.dart';
+//TODO Diseño
+//TODO Copiar datos del usuario logado en los textfields
+//TODO Integrar API Modificar
+//TODO Correo no editable
+//TODO Integrar API Listado Pedidos
+//TODO navegar a pantalla Detalle Pedidos
 
 class Perfil extends StatelessWidget {
   const Perfil({Key? key}) : super(key: key);
