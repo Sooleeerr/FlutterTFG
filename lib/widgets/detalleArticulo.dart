@@ -16,9 +16,7 @@ class DetalleArticulo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text("Mundo Móvil"),
-        ),
+        title: Text("Mundo Móvil"),
       ),
       body: SafeArea(
         child: Container(

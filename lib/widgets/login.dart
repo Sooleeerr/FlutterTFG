@@ -7,7 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'home.dart';
 //TODO Diseño
-//TODO Compartir DAtos del Usuario logado
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);

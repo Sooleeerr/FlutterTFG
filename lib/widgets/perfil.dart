@@ -5,6 +5,7 @@ import 'package:tfg/widgets/pedido.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 //TODO Diseño
+//TODO Owerflow Render Error
 //TODO Integrar API Modificar
 //TODO Integrar API Listado Pedidos
 //TODO navegar a pantalla Detalle Pedidos con parámetros
