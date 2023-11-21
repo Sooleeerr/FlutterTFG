@@ -3,6 +3,7 @@ import 'package:tfg/main.dart';
 import 'package:tfg/models/UsuarioModel.dart';
 import 'package:tfg/services/ApiService.dart';
 import 'package:tfg/widgets/registro.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'home.dart';
 //TODO Diseño
@@ -19,6 +20,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Material App',
       home: Scaffold(body: LoginPage() //TOCAR A PARTIR DE AQUI,
           ),
@@ -55,7 +57,10 @@ class _LoginPageState extends State<LoginPage> {
     Future<bool> res = _getUsuario(usuarioTextField, passwordTextField);
     if (await res) {
       textoSnackBar = "Login correcto";
-      //SharedAppData.setValue(context, UsuarioModel, _usuarioModel);
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('nombre_usuario', _usuarioModel!.nombreUsuario);
+      prefs.setString('correo_usuario', _usuarioModel!.emailUsuario);
+      prefs.setString('password_usuario', _usuarioModel!.contraseaUsuario);
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => Home()),

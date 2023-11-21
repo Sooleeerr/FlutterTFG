@@ -6,7 +6,6 @@ import 'package:tfg/widgets/carrito.dart';
 import 'package:tfg/widgets/listaArticulos.dart';
 import 'package:tfg/widgets/perfil.dart';
 
-//TODO: [A] Meter opción de Administracion Barra abajo
 //TODO: Logica aparezca opcion de Admn segun usuario conectado
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);

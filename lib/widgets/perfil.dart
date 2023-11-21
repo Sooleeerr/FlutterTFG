@@ -1,16 +1,55 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:tfg/widgets/pedido.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 //TODO Diseño
-//TODO Copiar datos del usuario logado en los textfields
 //TODO Integrar API Modificar
 //TODO Integrar API Listado Pedidos
 //TODO navegar a pantalla Detalle Pedidos con parámetros
 
-class Perfil extends StatelessWidget {
+class Perfil extends StatefulWidget {
   const Perfil({Key? key}) : super(key: key);
 
   @override
+  State<Perfil> createState() => _PerfilState();
+}
+
+class _PerfilState extends State<Perfil> {
+/*  prefs.setString('nombre_usuario', _usuarioModel!.nombreUsuario);
+    prefs.setString('correo_usuario', _usuarioModel!.emailUsuario);
+    prefs.setString('password_usuario', _usuarioModel!.contraseaUsuario);
+*/
+
+  final TextEditingController _controllerNombre = TextEditingController();
+  final TextEditingController _controllerEmail = TextEditingController();
+  final TextEditingController _controllerPassword = TextEditingController();
+  late SharedPreferences _prefs;
+
+  @override
+  void initState() {
+    super.initState();
+    obtenerValor();
+  }
+
+  Future<void> obtenerValor() async {
+    _prefs = await SharedPreferences.getInstance();
+    String valorNombre = _prefs.getString('nombre_usuario') ?? '';
+    String valorEmail = _prefs.getString('correo_usuario') ?? '';
+    String valorPassword = _prefs.getString('password_usuario') ?? '';
+
+    setState(() {
+      _controllerNombre.text = valorNombre;
+      _controllerEmail.text = valorEmail;
+      _controllerPassword.text = valorPassword;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    Future<SharedPreferences> prefs = SharedPreferences.getInstance();
+
     return SafeArea(
       child: Container(
         padding: EdgeInsets.all(20),
@@ -29,15 +68,19 @@ class Perfil extends StatelessWidget {
             SizedBox(height: 20.0),
             TextField(
               decoration: InputDecoration(labelText: "Nombre"),
+              controller: _controllerNombre,
             ),
             SizedBox(height: 20.0),
             TextField(
               decoration: InputDecoration(labelText: "Correo"),
               enabled: false,
+              controller: _controllerEmail,
             ),
             SizedBox(height: 20.0),
             TextField(
               decoration: InputDecoration(labelText: "Contraseña"),
+              controller: _controllerPassword,
+              obscureText: true,
             ),
             SizedBox(height: 20.0),
             ElevatedButton(
