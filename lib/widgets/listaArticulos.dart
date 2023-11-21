@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tfg/widgets/articulo.dart';
 import '../models/ArticuloModel.dart';
 import '../services/ApiService.dart';
-//TODO Meter fitrado
+//TODO [A] Meter fitrado
 //TODO: Diseño
 
 class ListaArticulos extends StatefulWidget {

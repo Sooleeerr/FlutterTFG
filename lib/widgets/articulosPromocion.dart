@@ -4,7 +4,7 @@ import '../models/ArticuloModel.dart';
 import '../services/ApiService.dart';
 
 //TODO: Diseño
-//TODO: Filtrado articulos
+//TODO: [A] Filtrado articulos
 class ListaArticulosPromocion extends StatefulWidget {
   const ListaArticulosPromocion({Key? key}) : super(key: key);
 

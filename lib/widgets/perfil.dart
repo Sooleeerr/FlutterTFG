@@ -3,9 +3,8 @@ import 'package:tfg/widgets/pedido.dart';
 //TODO Diseño
 //TODO Copiar datos del usuario logado en los textfields
 //TODO Integrar API Modificar
-//TODO Correo no editable
 //TODO Integrar API Listado Pedidos
-//TODO navegar a pantalla Detalle Pedidos
+//TODO navegar a pantalla Detalle Pedidos con parámetros
 
 class Perfil extends StatelessWidget {
   const Perfil({Key? key}) : super(key: key);
@@ -34,6 +33,7 @@ class Perfil extends StatelessWidget {
             SizedBox(height: 20.0),
             TextField(
               decoration: InputDecoration(labelText: "Correo"),
+              enabled: false,
             ),
             SizedBox(height: 20.0),
             TextField(

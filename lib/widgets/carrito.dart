@@ -4,7 +4,7 @@ import 'package:tfg/widgets/articuloCarrito.dart';
 //TODO Diseño
 //TODO Meter el total+hacer pedido
 //TODO Meter fucionalidad +/-
-//TODO Navegar a Detalle Articulo
+//TODO [A] Navegar a Detalle Articulo
 
 class Carrito extends StatelessWidget {
   const Carrito({Key? key}) : super(key: key);
