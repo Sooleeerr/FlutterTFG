@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tfg/widgets/admin.dart';
 
 import 'package:tfg/widgets/articulosPromocion.dart';
 import 'package:tfg/widgets/carrito.dart';
@@ -35,6 +36,7 @@ class _HomeState extends State<Home> {
       ListaArticulosPromocion(),
       Carrito(),
       Perfil(),
+      Administrador()
     ];
 
     return Scaffold(
