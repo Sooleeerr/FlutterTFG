@@ -15,6 +15,15 @@ class Constants {
   static String listaArticulosPromocionEndpoint = "/articulosPromocion";
   static String registroUsuarioEndpoint = "/registroUsuario";
 }
+//TODO API Carrito + Model
+//TODO API Lista Pedidos+Model
+
+//TODO API Articulos Relacionados - Falta Modificar API NODEJS para traer los detalles de cada articulo
+//TODO API Articulos Visitados - Falta Modificar API NODEJS para traer los detalles de cada articulo
+//TODO API Realizar Pedido - Falta hacer API NODEJS de creación de pedido
+//TODO API Visitar Articulo
+
+//TODO API Modificar Datos Usuario
 
 class ApiService {
   Future<UsuarioModel?> login(usuario, password) async {
