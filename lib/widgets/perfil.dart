@@ -1,12 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:tfg/models/Respuesta.dart';
+import 'package:tfg/services/ApiService.dart';
 import 'package:tfg/widgets/pedido.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 //TODO Diseño
 //TODO Owerflow Render Error
-//TODO Integrar API Modificar
 //TODO Integrar API Listado Pedidos
 //TODO navegar a pantalla Detalle Pedidos con parámetros
 
@@ -18,15 +19,15 @@ class Perfil extends StatefulWidget {
 }
 
 class _PerfilState extends State<Perfil> {
-/*  prefs.setString('nombre_usuario', _usuarioModel!.nombreUsuario);
-    prefs.setString('correo_usuario', _usuarioModel!.emailUsuario);
-    prefs.setString('password_usuario', _usuarioModel!.contraseaUsuario);
-*/
+  String _nombre = "";
+  String _email = "";
+  String _password = "";
 
   final TextEditingController _controllerNombre = TextEditingController();
   final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
   late SharedPreferences _prefs;
+  Respuesta registroOK = Respuesta();
 
   @override
   void initState() {
@@ -42,9 +43,36 @@ class _PerfilState extends State<Perfil> {
 
     setState(() {
       _controllerNombre.text = valorNombre;
+      _nombre = valorNombre;
       _controllerEmail.text = valorEmail;
+      _email = valorEmail;
       _controllerPassword.text = valorPassword;
+      _password = valorPassword;
     });
+  }
+
+  Future<bool> _modificarUsuario(nombre, email, password) async {
+    registroOK = (await ApiService().modificarUsuario(nombre, email, password));
+
+    return Future.value(registroOK.getRespuestaCorrecta);
+  }
+
+  _modificar() async {
+    String textoSnackBar;
+    Future<bool> res = _modificarUsuario(_nombre, _email, _password);
+
+    if (await res) {
+      textoSnackBar = "Cambios realizados";
+    } else {
+      textoSnackBar = registroOK.mensajeRespuesta;
+    }
+    final snackBar = SnackBar(
+      content: Text(textoSnackBar),
+    );
+
+    // Find the ScaffoldMessenger in the widget tree
+    // and use it to show a SnackBar.
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
@@ -70,24 +98,32 @@ class _PerfilState extends State<Perfil> {
             TextField(
               decoration: InputDecoration(labelText: "Nombre"),
               controller: _controllerNombre,
+              onChanged: (texto) {
+                _nombre = texto;
+              },
             ),
             SizedBox(height: 20.0),
             TextField(
               decoration: InputDecoration(labelText: "Correo"),
               enabled: false,
               controller: _controllerEmail,
+              onChanged: (texto) {
+                _email = texto;
+              },
             ),
             SizedBox(height: 20.0),
             TextField(
               decoration: InputDecoration(labelText: "Contraseña"),
               controller: _controllerPassword,
               obscureText: true,
+              onChanged: (texto) {
+                _password = texto;
+              },
             ),
             SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
-                // Acción a realizar cuando se presiona el botón
-                print('Botón presionado');
+                _modificar();
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,

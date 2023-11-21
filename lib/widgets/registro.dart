@@ -17,6 +17,34 @@ class _RegistroState extends State<Registro> {
   String _email = "";
   String _password = "";
   Respuesta registroOK = Respuesta();
+  Future<bool> _registroUsuario(nombre, email, password) async {
+    registroOK = (await ApiService().registro(nombre, email, password));
+
+    //Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
+
+    return Future.value(registroOK.getRespuestaCorrecta);
+  }
+
+  _registro() async {
+    String textoSnackBar;
+    Future<bool> res = _registroUsuario(_nombre, _email, _password);
+
+    if (await res) {
+      textoSnackBar = "Registro correcto";
+      //SharedAppData.setValue(context, UsuarioModel, _usuarioModel);
+      Navigator.pop(context);
+    } else {
+      textoSnackBar = registroOK.mensajeRespuesta;
+    }
+    final snackBar = SnackBar(
+      content: Text(textoSnackBar),
+    );
+
+    // Find the ScaffoldMessenger in the widget tree
+    // and use it to show a SnackBar.
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,33 +96,5 @@ class _RegistroState extends State<Registro> {
             ),
           ),
         ));
-  }
-
-  Future<bool> _registroUsuario(nombre, email, password) async {
-    registroOK = (await ApiService().registro(nombre, email, password));
-
-    //Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
-
-    return Future.value(registroOK.getRespuestaCorrecta);
-  }
-
-  _registro() async {
-    String textoSnackBar;
-    Future<bool> res = _registroUsuario(_nombre, _email, _password);
-
-    if (await res) {
-      textoSnackBar = "Registro correcto";
-      //SharedAppData.setValue(context, UsuarioModel, _usuarioModel);
-      Navigator.pop(context);
-    } else {
-      textoSnackBar = registroOK.mensajeRespuesta;
-    }
-    final snackBar = SnackBar(
-      content: Text(textoSnackBar),
-    );
-
-    // Find the ScaffoldMessenger in the widget tree
-    // and use it to show a SnackBar.
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

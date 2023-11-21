@@ -14,6 +14,7 @@ class Constants {
   static String listaArticulosEndpoint = '/listaArticulos';
   static String listaArticulosPromocionEndpoint = "/articulosPromocion";
   static String registroUsuarioEndpoint = "/registroUsuario";
+  static String modificarUsuarioEndpoint = "/modificacionDatosUsuario";
 }
 //TODO API Carrito + Model
 //TODO API Lista Pedidos+Model
@@ -23,9 +24,36 @@ class Constants {
 //TODO API Realizar Pedido - Falta hacer API NODEJS de creación de pedido
 //TODO API Visitar Articulo
 
-//TODO API Modificar Datos Usuario
-
 class ApiService {
+  Future<Respuesta> modificarUsuario(nombre, email, password) async {
+    Respuesta respuesta = Respuesta();
+    try {
+      var url = Uri.parse(Constants.baseUrl +
+          Constants.modificarUsuarioEndpoint +
+          "/?nombreUsuario=" +
+          nombre +
+          "&idUsuario=" +
+          email +
+          "&contrasenaUsuario=" +
+          password);
+      log(url.toString());
+      var response = await http.put(url);
+      log(response.toString());
+      if (response.statusCode == 200) {
+        respuesta.respuestaCorrecta = true;
+        respuesta.mensajeRespuesta = response.body;
+        return Future.value(respuesta);
+      } else {
+        respuesta.respuestaCorrecta = false;
+        respuesta.mensajeRespuesta = response.body;
+        return Future.value(respuesta);
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+    return Future.value(respuesta);
+  }
+
   Future<UsuarioModel?> login(usuario, password) async {
     try {
       var url = Uri.parse(Constants.baseUrl +
