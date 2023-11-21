@@ -79,6 +79,13 @@ class _HomeState extends State<Home> {
             label: "Perfil",
             backgroundColor: Colors.blue,
           ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              (Icons.admin_panel_settings),
+            ),
+            label: "Administrador",
+            backgroundColor: Colors.blue,
+          ),
         ],
       ),
     );
