@@ -1,9 +1,23 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
-class Filtrado extends StatelessWidget {
+/* VARIABLES API
+  var marcaArticulo = req.query.marcaArticulo;
+  var modeloArticulo = req.query.modeloArticulo;
+  var almacenamientoArticulo = req.query.almacenamientoArticulo;
+  var colorArticulo = req.query.colorArticulo;
+  var precioMinimo = parseFloat(req.query.precioMinimo);
+  var precioMaximo = parseFloat(req.query.precioMaximo);*/
+
+class Filtrado extends StatefulWidget {
   const Filtrado({Key? key}) : super(key: key);
+
+  @override
+  State<Filtrado> createState() => _FiltradoState();
+}
+
+class _FiltradoState extends State<Filtrado> {
+  String selectedValueMarca = '';
+  String selectedValueCapacidad = '';
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +29,7 @@ class Filtrado extends StatelessWidget {
             Container(
               alignment: Alignment.topCenter,
               child: Text(
-                "Filtrado de artículos",
+                "Filtrado de artículos2",
                 style: TextStyle(
                   fontSize: 25,
                   decoration: TextDecoration.underline,
@@ -27,8 +41,81 @@ class Filtrado extends StatelessWidget {
               "Marca",
               style: TextStyle(fontSize: 16),
             ),
-            Row(
-              children: [Text("iPhone"), Text("Samsung"), Text("Xiaomi")],
+            Column(
+              //children: [Text("iPhone"), Text("Samsung"), Text("Xiaomi")],
+              children: [
+                RadioListTile<String>(
+                  title: Text('Apple'),
+                  value: 'Apple',
+                  groupValue: selectedValueMarca,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedValueMarca = value!;
+                    });
+                  },
+                ),
+                RadioListTile<String>(
+                  title: Text('Samsung'),
+                  value: 'Samsung',
+                  groupValue: selectedValueMarca,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedValueMarca = value!;
+                    });
+                  },
+                ),
+                RadioListTile<String>(
+                  title: Text('Xiaomi'),
+                  value: 'Xiaomi',
+                  groupValue: selectedValueMarca,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedValueMarca = value!;
+                    });
+                  },
+                ),
+              ],
+            ),
+            SizedBox(height: 20.0),
+            Text(
+              "Modelo",
+              style: TextStyle(fontSize: 16),
+            ),
+            Column(
+              //Capacidad
+              //children: [Text("iPhone"), Text("Samsung"), Text("Xiaomi")],
+              children: [
+                RadioListTile<String>(
+                  title: Text('64 GB'),
+                  value: '64GB',
+                  groupValue: selectedValueCapacidad,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedValueCapacidad = value!;
+                    });
+                  },
+                ),
+                RadioListTile<String>(
+                  title: Text('128 GB'),
+                  value: '128GB',
+                  groupValue: selectedValueCapacidad,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedValueCapacidad = value!;
+                    });
+                  },
+                ),
+                RadioListTile<String>(
+                  title: Text('256 GB'),
+                  value: '256GB',
+                  groupValue: selectedValueCapacidad,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedValueCapacidad = value!;
+                    });
+                  },
+                ),
+              ],
             )
           ],
         ),
