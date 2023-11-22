@@ -3,6 +3,7 @@ import 'package:tfg/widgets/admin.dart';
 
 import 'package:tfg/widgets/articulosPromocion.dart';
 import 'package:tfg/widgets/carrito.dart';
+import 'package:tfg/widgets/filtrado.dart';
 import 'package:tfg/widgets/listaArticulos.dart';
 import 'package:tfg/widgets/perfil.dart';
 
@@ -35,7 +36,8 @@ class _HomeState extends State<Home> {
       ListaArticulosPromocion(),
       Carrito(),
       Perfil(),
-      Administrador()
+      //Administrador()
+      Filtrado(),
     ];
 
     return Scaffold(
