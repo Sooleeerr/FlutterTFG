@@ -18,6 +18,13 @@ class Filtrado extends StatefulWidget {
 class _FiltradoState extends State<Filtrado> {
   String selectedValueMarca = '';
   String selectedValueCapacidad = '';
+  String dropdownMarcaValue = 'Seleccione Marca';
+  var itemsMarca = [
+    'Seleccione Marca',
+    'Apple',
+    'Samsung',
+    'Xiaomi',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -43,34 +50,27 @@ class _FiltradoState extends State<Filtrado> {
             ),
             Column(
               //children: [Text("iPhone"), Text("Samsung"), Text("Xiaomi")],
+
               children: [
-                RadioListTile<String>(
-                  title: Text('Apple'),
-                  value: 'Apple',
-                  groupValue: selectedValueMarca,
-                  onChanged: (value) {
+                DropdownButton(
+                  // Initial Value
+                  value: dropdownMarcaValue,
+
+                  // Down Arrow Icon
+                  icon: const Icon(Icons.keyboard_arrow_down),
+
+                  // Array list of items
+                  items: itemsMarca.map((String items) {
+                    return DropdownMenuItem(
+                      value: items,
+                      child: Text(items),
+                    );
+                  }).toList(),
+                  // After selecting the desired option,it will
+                  // change button value to selected value
+                  onChanged: (String? newValue) {
                     setState(() {
-                      selectedValueMarca = value!;
-                    });
-                  },
-                ),
-                RadioListTile<String>(
-                  title: Text('Samsung'),
-                  value: 'Samsung',
-                  groupValue: selectedValueMarca,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValueMarca = value!;
-                    });
-                  },
-                ),
-                RadioListTile<String>(
-                  title: Text('Xiaomi'),
-                  value: 'Xiaomi',
-                  groupValue: selectedValueMarca,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValueMarca = value!;
+                      dropdownMarcaValue = newValue!;
                     });
                   },
                 ),
