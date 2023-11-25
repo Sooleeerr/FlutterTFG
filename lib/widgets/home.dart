@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tfg/constants.dart';
+
 import 'package:tfg/widgets/admin.dart';
 
 import 'package:tfg/widgets/articulosPromocion.dart';
@@ -53,41 +56,40 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        items: const [
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed,
+        fixedColor: kPrimaryColor,
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(
-              (Icons.home),
-            ),
+            icon: Icon((Icons.home)),
             label: "Principal",
-            backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(
               (Icons.discount),
             ),
             label: "Promociones",
-            backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(
               (Icons.shopping_cart),
             ),
             label: "Carrito",
-            backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(
               (Icons.person),
             ),
             label: "Perfil",
-            backgroundColor: Colors.blue,
+            //label: "Perfil",
+            //backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(
               (Icons.admin_panel_settings),
             ),
             label: "Administrador",
-            backgroundColor: Colors.blue,
           ),
         ],
       ),

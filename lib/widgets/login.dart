@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tfg/constants.dart';
 import 'package:tfg/main.dart';
 import 'package:tfg/models/UsuarioModel.dart';
 import 'package:tfg/services/ApiService.dart';
+import 'package:tfg/theme.dart';
 import 'package:tfg/widgets/registro.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -21,6 +23,7 @@ class _LoginState extends State<Login> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
+      theme: AppTheme.lightTheme(context),
       home: Scaffold(body: LoginPage() //TOCAR A PARTIR DE AQUI,
           ),
     );
@@ -83,10 +86,20 @@ class _LoginPageState extends State<LoginPage> {
         padding: EdgeInsets.all(40),
         child: Column(
           children: [
-            Container(
-              alignment: Alignment.centerLeft,
+            const SizedBox(height: 60),
+            const Text(
+              "Bienvenido a Mundo Móvil",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            SizedBox(height: 100.0),
+            const Text(
+              "Introduce tu correo y tu contraseña",
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 30),
             TextField(
               decoration: InputDecoration(labelText: "Correo"),
               onChanged: (texto) {
@@ -109,23 +122,25 @@ class _LoginPageState extends State<LoginPage> {
               child: Text('Acceder'),
             ),
             SizedBox(height: 10.0),
-            Text(
-              "¿Aún no tienes cuenta?",
-              style: TextStyle(fontSize: 14),
-            ),
             SizedBox(height: 10.0),
-            ElevatedButton(
-              onPressed: () {
-                // Acción a realizar cuando se presiona el botón
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Registro()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-              ),
-              child: Text('Regístrate'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "¿Aún no tienes cuenta?   ",
+                  style: TextStyle(fontSize: 16),
+                ),
+                GestureDetector(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Registro()),
+                  ),
+                  child: const Text(
+                    "Registrate",
+                    style: TextStyle(fontSize: 16, color: kPrimaryColor),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
