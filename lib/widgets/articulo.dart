@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfg/models/ArticuloModel.dart';
 import 'package:tfg/widgets/detalleArticulo.dart';
+import 'package:tfg/constants.dart';
 
 class Articulo extends StatelessWidget {
   final ArticuloModel articulo;
@@ -23,12 +24,14 @@ class Articulo extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
-              color: articulo.articuloPromocion == "yes"
-                  ? Color.fromARGB(255, 54, 244, 149)
-                  : Colors.transparent,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              border: Border.all(
-                  color: Color.fromARGB(255, 171, 172, 170), width: 2)),
+            color: Color(0xFFF5F6F9),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            /*border: Border.all(
+                color: articulo.articuloPromocion == "yes"
+                    ? Color.fromARGB(255, 219, 123, 5)
+                    : Color.fromARGB(255, 171, 172, 170),
+                width: 2),*/
+          ),
           child: Column(
             children: [
               Flexible(
@@ -46,27 +49,34 @@ class Articulo extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     articulo.nombreArticulo!,
-                    style: TextStyle(
-                      fontFamily: "Open Sans",
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),
               ),
-              Flexible(
-                flex: 2,
-                child: Container(
-                  alignment: Alignment.centerRight,
-                  child: Text(
+              Row(
+                mainAxisAlignment: (articulo.articuloPromocion == "yes")
+                    ? MainAxisAlignment.spaceBetween
+                    : MainAxisAlignment.end,
+                children: [
+                  if (articulo.articuloPromocion == "yes")
+                    Text(
+                      articulo.precioArticuloAnterior.toString() + "€",
+                      style: TextStyle(
+                        color: kSecondaryColor,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.lineThrough,
+                      ),
+                    ),
+                  Text(
                     articulo.precioArticulo.toString() + "€",
                     style: TextStyle(
-                      fontFamily: "Open Sans",
+                      color: kPrimaryColor,
                       fontSize: 16.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                ),
+                ],
               )
             ],
           ),

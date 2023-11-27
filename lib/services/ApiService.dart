@@ -8,8 +8,8 @@ import 'package:tfg/models/UsuarioModel.dart';
 import '../models/ArticuloModel.dart';
 
 class Constants {
-  static String baseUrl = 'https://apis-tfg.onrender.com';
-  //static String baseUrl = 'http://10.0.2.2:4040';
+  //static String baseUrl = 'https://apis-tfg.onrender.com';
+  static String baseUrl = 'http://10.0.2.2:4040';
   static String loginEndpoint = '/inicioSesion';
   static String listaArticulosEndpoint = '/listaArticulos';
   static String listaArticulosPromocionEndpoint = "/articulosPromocion";
