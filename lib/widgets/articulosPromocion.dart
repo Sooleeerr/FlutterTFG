@@ -3,8 +3,6 @@ import 'package:tfg/widgets/articulo.dart';
 import '../models/ArticuloModel.dart';
 import '../services/ApiService.dart';
 
-//TODO: Diseño
-//TODO: [A] Filtrado articulos
 class ListaArticulosPromocion extends StatefulWidget {
   const ListaArticulosPromocion({Key? key}) : super(key: key);
 
@@ -35,7 +33,10 @@ class _ListaArticulosPromocionState extends State<ListaArticulosPromocion> {
         : GridView.count(
             crossAxisCount: 2,
             children: List.generate(_listaArticulosModel!.length, (index) {
-              return Articulo(articulo: _listaArticulosModel![index]);
+              return Articulo(
+                articulo: _listaArticulosModel![index],
+                miniatura: false,
+              );
             }),
           );
   }

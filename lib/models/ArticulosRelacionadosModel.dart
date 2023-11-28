@@ -1,19 +1,51 @@
 import 'dart:convert';
 
-List<ArticuloModel> articuloModelFromJson(String str) =>
-    List<ArticuloModel>.from(
-        json.decode(str).map((x) => ArticuloModel.fromJson(x)));
+import 'package:tfg/models/ArticuloModel.dart';
 
-String articuloModelToJson(List<ArticuloModel> data) =>
+List<ArticulosRelacionadosModel> articulosRelacionadosModelFromJson(
+        String str) =>
+    List<ArticulosRelacionadosModel>.from(
+        json.decode(str).map((x) => ArticulosRelacionadosModel.fromJson(x)));
+
+String articulosRelacionadosModelToJson(
+        List<ArticulosRelacionadosModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-ArticuloModel singleArticuloModelFromJson(String str) =>
-    ArticuloModel.fromJson(json.decode(str));
+class ArticulosRelacionadosModel {
+  String? sId;
+  String? idArticulo1;
+  String? idArticulo2;
+  //List<DetalleArticulo>? detalleArticulo;
+  List<ArticuloModel>? detalleArticulo;
+  ArticulosRelacionadosModel(
+      {this.sId, this.idArticulo1, this.idArticulo2, this.detalleArticulo});
 
-String singleArticuloModelToJson(ArticuloModel data) =>
-    json.encode(data.toJson());
+  ArticulosRelacionadosModel.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    idArticulo1 = json['id_articulo1'];
+    idArticulo2 = json['id_articulo2'];
+    if (json['detalle_articulo'] != null) {
+      detalleArticulo = <ArticuloModel>[];
+      json['detalle_articulo'].forEach((v) {
+        detalleArticulo!.add(new ArticuloModel.fromJson(v));
+      });
+    }
+  }
 
-class ArticuloModel {
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['id_articulo1'] = this.idArticulo1;
+    data['id_articulo2'] = this.idArticulo2;
+    if (this.detalleArticulo != null) {
+      data['detalle_articulo'] =
+          this.detalleArticulo!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class DetalleArticulo {
   String? sId;
   String? nombreArticulo;
   String? marcaArticulo;
@@ -24,11 +56,8 @@ class ArticuloModel {
   String? fotoArticulo;
   String? idArticulo;
   String? articuloPromocion;
-  String? descripcionArticulo;
-  int? precioArticuloAnterior;
-  int? stock;
 
-  ArticuloModel(
+  DetalleArticulo(
       {this.sId,
       this.nombreArticulo,
       this.marcaArticulo,
@@ -38,12 +67,9 @@ class ArticuloModel {
       this.almacenamientoArticulo,
       this.fotoArticulo,
       this.idArticulo,
-      this.articuloPromocion,
-      this.descripcionArticulo,
-      this.precioArticuloAnterior,
-      this.stock});
+      this.articuloPromocion});
 
-  ArticuloModel.fromJson(Map<String, dynamic> json) {
+  DetalleArticulo.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     nombreArticulo = json['nombre_articulo'];
     marcaArticulo = json['marca_articulo'];
@@ -54,9 +80,6 @@ class ArticuloModel {
     fotoArticulo = json['foto_articulo'];
     idArticulo = json['id_articulo'];
     articuloPromocion = json['articulo_promocion'];
-    descripcionArticulo = json['descripcion_articulo'];
-    precioArticuloAnterior = json['precio_articulo_anterior'];
-    stock = json['stock'];
   }
 
   Map<String, dynamic> toJson() {
@@ -71,9 +94,6 @@ class ArticuloModel {
     data['foto_articulo'] = this.fotoArticulo;
     data['id_articulo'] = this.idArticulo;
     data['articulo_promocion'] = this.articuloPromocion;
-    data['descripcion_articulo'] = this.descripcionArticulo;
-    data['precio_articulo_anterior'] = this.precioArticuloAnterior;
-    data['stock'] = this.stock;
     return data;
   }
 }

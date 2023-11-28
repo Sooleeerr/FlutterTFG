@@ -1,11 +1,17 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tfg/constants.dart';
+import 'package:tfg/models/CarritoModel.dart';
+import 'package:tfg/providers/CarritoProvider.dart';
 
 import 'package:tfg/widgets/admin.dart';
 
 import 'package:tfg/widgets/articulosPromocion.dart';
 import 'package:tfg/widgets/carrito.dart';
+import 'package:tfg/widgets/components/IconWithCounter.dart';
 import 'package:tfg/widgets/filtrado.dart';
 import 'package:tfg/widgets/listaArticulos.dart';
 import 'package:tfg/widgets/perfil.dart';
@@ -20,6 +26,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
+  int numItems = 0;
 
   @override
   void initState() {
@@ -37,16 +44,18 @@ class _HomeState extends State<Home> {
     List<Widget> _pages = <Widget>[
       ListaArticulos(),
       ListaArticulosPromocion(),
-      Carrito(),
+      Carrito(
+        carrito: (Provider.of<CarritoProvider>(context)),
+      ),
       Perfil(),
       //Administrador()
       Filtrado(),
     ];
 
     return Scaffold(
-      appBar: AppBar(
+      /*appBar: AppBar(
         title: Text("Mundo Móvil"),
-      ),
+      ),*/
       body: SafeArea(
         child: IndexedStack(
           index: _selectedIndex,
@@ -72,8 +81,19 @@ class _HomeState extends State<Home> {
             label: "Promociones",
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              (Icons.shopping_cart),
+            /*icon: Icon(
+                (Icons.shopping_cart),
+              ),*/
+            icon: IconWithCounter(
+              icon: Icons.shopping_cart,
+              numOfItem: (Provider.of<CarritoProvider>(context)
+                          .carritoModel
+                          .numeroArticulos) !=
+                      null
+                  ? Provider.of<CarritoProvider>(context)
+                      .carritoModel
+                      .numeroArticulos!
+                  : 0,
             ),
             label: "Carrito",
           ),

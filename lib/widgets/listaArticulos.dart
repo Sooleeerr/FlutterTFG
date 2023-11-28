@@ -3,7 +3,7 @@ import 'package:tfg/widgets/articulo.dart';
 import '../models/ArticuloModel.dart';
 import '../services/ApiService.dart';
 //TODO [A] Meter fitrado
-//TODO: Diseño
+//TODO: OPCIONAL Diseño Articulos Visitados, promos
 
 class ListaArticulos extends StatefulWidget {
   const ListaArticulos({Key? key}) : super(key: key);
@@ -34,7 +34,10 @@ class _ListaArticulosState extends State<ListaArticulos> {
         : GridView.count(
             crossAxisCount: 2,
             children: List.generate(_listaArticulosModel!.length, (index) {
-              return Articulo(articulo: _listaArticulosModel![index]);
+              return Articulo(
+                articulo: _listaArticulosModel![index],
+                miniatura: false,
+              );
             }),
           );
   }

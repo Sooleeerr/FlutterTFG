@@ -3,6 +3,7 @@ import 'package:tfg/widgets/articuloDetallePedido.dart';
 
 //TODO Diseño
 //TODO Integrar API
+//TODO APPBar Atras
 
 class detallePedido extends StatelessWidget {
   const detallePedido({Key? key}) : super(key: key);

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tfg/models/Respuesta.dart';
 import 'package:tfg/services/ApiService.dart';
 
-//TODO Diseño
+//TODO Revisar APPBAR
 class Registro extends StatefulWidget {
   const Registro({Key? key}) : super(key: key);
 

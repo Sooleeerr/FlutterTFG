@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tfg/constants.dart';
-import 'package:tfg/main.dart';
 import 'package:tfg/models/UsuarioModel.dart';
+import 'package:tfg/providers/CarritoProvider.dart';
 import 'package:tfg/services/ApiService.dart';
 import 'package:tfg/theme.dart';
 import 'package:tfg/widgets/registro.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'home.dart';
-//TODO Diseño
+//TODO OPCIONAL: Olvidarse contraseña
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -24,8 +25,9 @@ class _LoginState extends State<Login> {
       debugShowCheckedModeBanner: false,
       title: 'Material App',
       theme: AppTheme.lightTheme(context),
-      home: Scaffold(body: LoginPage() //TOCAR A PARTIR DE AQUI,
-          ),
+      home: Scaffold(
+        body: LoginPage(),
+      ),
     );
   }
 }
@@ -42,6 +44,10 @@ class _LoginPageState extends State<LoginPage> {
   String passwordTextField = "";
 
   late UsuarioModel? _usuarioModel;
+  @override
+  void initState() {
+    super.initState();
+  }
 
   Future<bool> _getUsuario(usuario, password) async {
     _usuarioModel = (await ApiService().login(usuario, password));
@@ -63,6 +69,7 @@ class _LoginPageState extends State<LoginPage> {
       prefs.setString('nombre_usuario', _usuarioModel!.nombreUsuario);
       prefs.setString('correo_usuario', _usuarioModel!.emailUsuario);
       prefs.setString('password_usuario', _usuarioModel!.contraseaUsuario);
+      Provider.of<CarritoProvider>(context, listen: false).inicializarCarrito();
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => Home()),

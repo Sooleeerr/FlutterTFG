@@ -1,9 +1,14 @@
 import 'dart:convert';
 
+CarritoModel carritoModelFromJson(String str) =>
+    CarritoModel.fromJson(json.decode(str));
+
+String carritoModelToJson(CarritoModel data) => json.encode(data.toJson());
+
 class CarritoModel {
   String? sId;
   String? idUsuario;
-  List<ListaArticulos>? listaArticulos;
+  List<ListaArticulosCarrito>? listaArticulos;
   int? precioTotal;
   String? estado;
   int? numeroArticulos;
@@ -20,9 +25,9 @@ class CarritoModel {
     sId = json['_id'];
     idUsuario = json['id_usuario'];
     if (json['lista_articulos'] != null) {
-      listaArticulos = <ListaArticulos>[];
+      listaArticulos = <ListaArticulosCarrito>[];
       json['lista_articulos'].forEach((v) {
-        listaArticulos!.add(new ListaArticulos.fromJson(v));
+        listaArticulos!.add(new ListaArticulosCarrito.fromJson(v));
       });
     }
     precioTotal = json['precio_total'];
@@ -45,7 +50,7 @@ class CarritoModel {
   }
 }
 
-class ListaArticulos {
+class ListaArticulosCarrito {
   String? idArticulo;
   String? nombreArticulo;
   String? marcaArticulo;
@@ -58,7 +63,7 @@ class ListaArticulos {
   int? cantidadArticulo;
   int? precioTotalArticulo;
 
-  ListaArticulos(
+  ListaArticulosCarrito(
       {this.idArticulo,
       this.nombreArticulo,
       this.marcaArticulo,
@@ -71,7 +76,7 @@ class ListaArticulos {
       this.cantidadArticulo,
       this.precioTotalArticulo});
 
-  ListaArticulos.fromJson(Map<String, dynamic> json) {
+  ListaArticulosCarrito.fromJson(Map<String, dynamic> json) {
     idArticulo = json['id_articulo'];
     nombreArticulo = json['nombre_articulo'];
     marcaArticulo = json['marca_articulo'];

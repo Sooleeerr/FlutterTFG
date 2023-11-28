@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:tfg/models/ArticuloModel.dart';
 import 'package:tfg/widgets/detalleArticulo.dart';
@@ -5,7 +7,8 @@ import 'package:tfg/constants.dart';
 
 class Articulo extends StatelessWidget {
   final ArticuloModel articulo;
-  const Articulo({required this.articulo});
+  final bool miniatura;
+  const Articulo({required this.articulo, required this.miniatura});
 
   @override
   Widget build(BuildContext context) {
@@ -15,22 +18,17 @@ class Articulo extends StatelessWidget {
           context,
           MaterialPageRoute(
               builder: (context) => DetalleArticulo(
-                    articulo: articulo,
+                    idArticulo: articulo.idArticulo!,
                   )),
         );
       },
       child: Container(
-        padding: EdgeInsets.all(20),
+        padding: (!miniatura) ? EdgeInsets.all(20) : EdgeInsets.all(5),
         child: Container(
           padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
             color: Color(0xFFF5F6F9),
             borderRadius: BorderRadius.all(Radius.circular(10)),
-            /*border: Border.all(
-                color: articulo.articuloPromocion == "yes"
-                    ? Color.fromARGB(255, 219, 123, 5)
-                    : Color.fromARGB(255, 171, 172, 170),
-                width: 2),*/
           ),
           child: Column(
             children: [
@@ -49,7 +47,9 @@ class Articulo extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     articulo.nombreArticulo!,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: (!miniatura)
+                        ? Theme.of(context).textTheme.bodyMedium
+                        : Theme.of(context).textTheme.bodySmall,
                   ),
                 ),
               ),
@@ -63,7 +63,7 @@ class Articulo extends StatelessWidget {
                       articulo.precioArticuloAnterior.toString() + "€",
                       style: TextStyle(
                         color: kSecondaryColor,
-                        fontSize: 16.0,
+                        fontSize: (!miniatura) ? 16.0 : 12.0,
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.lineThrough,
                       ),
@@ -72,7 +72,7 @@ class Articulo extends StatelessWidget {
                     articulo.precioArticulo.toString() + "€",
                     style: TextStyle(
                       color: kPrimaryColor,
-                      fontSize: 16.0,
+                      fontSize: (!miniatura) ? 16.0 : 12.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

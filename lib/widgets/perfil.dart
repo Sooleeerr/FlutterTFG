@@ -7,7 +7,6 @@ import 'package:tfg/widgets/pedido.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 //TODO Diseño
-//TODO Owerflow Render Error
 //TODO Integrar API Listado Pedidos
 //TODO navegar a pantalla Detalle Pedidos con parámetros
 
@@ -77,8 +76,6 @@ class _PerfilState extends State<Perfil> {
 
   @override
   Widget build(BuildContext context) {
-    Future<SharedPreferences> prefs = SharedPreferences.getInstance();
-
     return SafeArea(
       child: Container(
         padding: EdgeInsets.all(20),
