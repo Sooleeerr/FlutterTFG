@@ -20,14 +20,8 @@ class Constants {
   static String detalleArticuloEndpoint = "/detalleArticulo";
   static String visitaArticuloEndpoint = "/visitaArticulo";
   static String listaArticulosRelacionadosEndpoint = "/articulosRelacionados";
+  static String modificarCarritoEndpoint = "/anadirArticuloCarrito";
 }
-//TODO API Carrito + Model
-//TODO API Lista Pedidos+Model
-
-//TODO API Articulos Relacionados - Falta Modificar API NODEJS para traer los detalles de cada articulo
-//TODO API Articulos Visitados - Falta Modificar API NODEJS para traer los detalles de cada articulo
-//TODO API Realizar Pedido - Falta hacer API NODEJS de creación de pedido
-//TODO API Visitar Articulo
 
 class ApiService {
   Future<Respuesta> modificarUsuario(nombre, email, password) async {
@@ -41,6 +35,38 @@ class ApiService {
           email +
           "&contrasenaUsuario=" +
           password);
+      log(url.toString());
+      var response = await http.put(url);
+      log(response.toString());
+      if (response.statusCode == 200) {
+        respuesta.respuestaCorrecta = true;
+        respuesta.mensajeRespuesta = response.body;
+        return Future.value(respuesta);
+      } else {
+        respuesta.respuestaCorrecta = false;
+        respuesta.mensajeRespuesta = response.body;
+        return Future.value(respuesta);
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+    return Future.value(respuesta);
+  }
+
+  Future<Respuesta> modificarCarrito(
+      idUsuario, idArticulo, cantidadArticulo, precioArticulo) async {
+    Respuesta respuesta = Respuesta();
+    try {
+      var url = Uri.parse(Constants.baseUrl +
+          Constants.modificarCarritoEndpoint +
+          "/?idUsuario=" +
+          idUsuario +
+          "&idArticulo=" +
+          idArticulo +
+          "&cantidadArticulo=" +
+          cantidadArticulo.toString() +
+          "&precioArticulo=" +
+          precioArticulo.toString());
       log(url.toString());
       var response = await http.put(url);
       log(response.toString());

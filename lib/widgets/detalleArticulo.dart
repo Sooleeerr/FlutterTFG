@@ -2,9 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tfg/constants.dart';
 import 'package:tfg/models/ArticulosRelacionadosModel.dart';
+import 'package:tfg/models/Respuesta.dart';
+import 'package:tfg/providers/CarritoProvider.dart';
 import 'package:tfg/services/ApiService.dart';
 import 'package:tfg/widgets/articulo.dart';
 import 'package:tfg/widgets/components/RoundedContainer.dart';
@@ -13,8 +16,6 @@ import 'package:tfg/widgets/pedido.dart';
 
 import 'package:tfg/models/ArticuloModel.dart';
 //TODO: OPCIONAL Color
-//TODO: Meter articulos relacionados
-//TODO: Añadir al carrito
 
 class DetalleArticulo extends StatefulWidget {
   final String idArticulo;
@@ -29,6 +30,8 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
   late ArticuloModel articulo = ArticuloModel();
   late List<ArticulosRelacionadosModel> articulosRelacionados = [];
   late SharedPreferences _prefs;
+  late String idUsuario;
+  late CarritoProvider carrito;
   @override
   void initState() {
     super.initState();
@@ -39,7 +42,7 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
   void _getDetalleArticulo() async {
     _prefs = await SharedPreferences.getInstance();
 
-    String idUsuario = _prefs.getString('correo_usuario') ?? '';
+    idUsuario = _prefs.getString('correo_usuario') ?? '';
     articulo = (await ApiService().detalleArticulo(widget.idArticulo))!;
     ApiService().visitaArticulo(idUsuario, widget.idArticulo);
     articulosRelacionados =
@@ -47,8 +50,41 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
     Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
   }
 
+  Respuesta registroOK = Respuesta();
+  Future<bool> _actualizaCarrito(
+      idUsuario, idArticulo, cantidadArticulo, precioArticulo) async {
+    registroOK = (await ApiService().modificarCarrito(
+        idUsuario, idArticulo, cantidadArticulo, precioArticulo));
+
+    //Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
+
+    return Future.value(registroOK.getRespuestaCorrecta);
+  }
+
+  _anadeCarrito() async {
+    String textoSnackBar;
+    Future<bool> res = _actualizaCarrito(
+        idUsuario, widget.idArticulo, 1, articulo.precioArticulo);
+
+    if (await res) {
+      textoSnackBar = "Articulo añadido a tu carrito";
+      carrito.actualizarCarrito(await ApiService().getCarrito(idUsuario));
+      Navigator.pop(context);
+    } else {
+      textoSnackBar = registroOK.mensajeRespuesta;
+    }
+    final snackBar = SnackBar(
+      content: Text(textoSnackBar),
+    );
+
+    // Find the ScaffoldMessenger in the widget tree
+    // and use it to show a SnackBar.
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
+    carrito = Provider.of<CarritoProvider>(context);
     return articulo.sId == null
         ? Scaffold(
             backgroundColor: const Color(0xFFF5F6F9),
@@ -292,7 +328,9 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _anadeCarrito();
+                    },
                     child: const Text("Añade al carrito"),
                   ),
                 ),
