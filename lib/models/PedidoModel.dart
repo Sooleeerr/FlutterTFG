@@ -1,28 +1,29 @@
 import 'dart:convert';
 
-CarritoModel carritoModelFromJson(String str) =>
-    CarritoModel.fromJson(json.decode(str));
+PedidoModel pedidoModelFromJson(String str) =>
+    PedidoModel.fromJson(json.decode(str));
 
-String carritoModelToJson(CarritoModel data) => json.encode(data.toJson());
+String pedidoModelToJson(PedidoModel data) => json.encode(data.toJson());
 
-class CarritoModel {
+class PedidoModel {
   String? sId;
+  String? idPedido;
   String? idUsuario;
   List<ListaArticulosPedido>? listaArticulos;
-  int? precioTotal;
-  String? estado;
-  int? numeroArticulos;
+  int? precioPedido;
+  String? fechaPedido;
 
-  CarritoModel(
+  PedidoModel(
       {this.sId,
+      this.idPedido,
       this.idUsuario,
       this.listaArticulos,
-      this.precioTotal,
-      this.estado,
-      this.numeroArticulos});
+      this.precioPedido,
+      this.fechaPedido});
 
-  CarritoModel.fromJson(Map<String, dynamic> json) {
+  PedidoModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
+    idPedido = json['id_pedido'];
     idUsuario = json['id_usuario'];
     if (json['lista_articulos'] != null) {
       listaArticulos = <ListaArticulosPedido>[];
@@ -30,22 +31,21 @@ class CarritoModel {
         listaArticulos!.add(new ListaArticulosPedido.fromJson(v));
       });
     }
-    precioTotal = json['precio_total'];
-    estado = json['estado'];
-    numeroArticulos = json['numero_articulos'];
+    precioPedido = json['precio_pedido'];
+    fechaPedido = json['fecha_pedido'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['_id'] = this.sId;
+    data['id_pedido'] = this.idPedido;
     data['id_usuario'] = this.idUsuario;
     if (this.listaArticulos != null) {
       data['lista_articulos'] =
           this.listaArticulos!.map((v) => v.toJson()).toList();
     }
-    data['precio_total'] = this.precioTotal;
-    data['estado'] = this.estado;
-    data['numero_articulos'] = this.numeroArticulos;
+    data['precio_pedido'] = this.precioPedido;
+    data['fecha_pedido'] = this.fechaPedido;
     return data;
   }
 }

@@ -2,7 +2,10 @@ import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:tfg/models/ArticulosRelacionadosModel.dart';
+import 'package:tfg/models/ListaPedidosModel.dart';
+import 'package:tfg/models/PedidoModel.dart';
 import 'package:tfg/models/Respuesta.dart';
+import 'package:tfg/models/RespuestaCreacionPedido.dart';
 import 'package:tfg/models/UsuarioModel.dart';
 import 'package:tfg/models/CarritoModel.dart';
 
@@ -21,9 +24,34 @@ class Constants {
   static String visitaArticuloEndpoint = "/visitaArticulo";
   static String listaArticulosRelacionadosEndpoint = "/articulosRelacionados";
   static String modificarCarritoEndpoint = "/anadirArticuloCarrito";
+  static String realizarPedidoEndpoint = "/realizarPedido";
+  static String detallePedidoEndpoint = "/detallePedido";
+  static String listaPedidosEndpoint = "/listaPedidos";
 }
 
 class ApiService {
+  Future<RespuestaCreacionPedidoModel?> realizarPedido(idUsuario) async {
+    try {
+      var url = Uri.parse(Constants.baseUrl +
+          Constants.realizarPedidoEndpoint +
+          "/?idUsuario=" +
+          idUsuario);
+
+      var response = await http.post(url);
+
+      if (response.statusCode == 200) {
+        RespuestaCreacionPedidoModel _respuesta =
+            respuestaCreacionPedidoModelFromJson(response.body);
+        return _respuesta;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+    return null;
+  }
+
   Future<Respuesta> modificarUsuario(nombre, email, password) async {
     Respuesta respuesta = Respuesta();
     try {
@@ -67,9 +95,9 @@ class ApiService {
           cantidadArticulo.toString() +
           "&precioArticulo=" +
           precioArticulo.toString());
-      log(url.toString());
+
       var response = await http.put(url);
-      log(response.toString());
+
       if (response.statusCode == 200) {
         respuesta.respuestaCorrecta = true;
         respuesta.mensajeRespuesta = response.body;
@@ -243,5 +271,42 @@ class ApiService {
       log(e.toString());
     }
     return CarritoModel();
+  }
+
+  Future<PedidoModel?> getPedido(idPedido) async {
+    try {
+      var url = Uri.parse(Constants.baseUrl +
+          Constants.detallePedidoEndpoint +
+          "/?idPedido=" +
+          idPedido);
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        PedidoModel pedido = pedidoModelFromJson(response.body);
+        return pedido;
+      }
+    } catch (e) {
+      log(e.toString());
+      return null;
+    }
+    return null;
+  }
+
+  Future<List<ListaPedidosModel>?> getListaPedidos(idUsuario) async {
+    try {
+      var url = Uri.parse(Constants.baseUrl +
+          Constants.listaPedidosEndpoint +
+          "/?idUsuario=" +
+          idUsuario);
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        List<ListaPedidosModel> pedido =
+            listaPedidosModelFromJson(response.body);
+        return pedido;
+      }
+    } catch (e) {
+      log(e.toString());
+      return [];
+    }
+    return [];
   }
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
+var numberFormatter = NumberFormat("#,###.00", "es_ES");
+var dateFormatter = DateFormat('dd/MM/yyyy HH:mm');
 const Color inActiveIconColor = Color(0xFFB6B6B6);
 const kPrimaryColor = Color(0xFFFF7643);
 const kPrimaryLightColor = Color(0xFFFFECDF);

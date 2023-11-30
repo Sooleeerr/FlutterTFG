@@ -12,7 +12,6 @@ import 'package:tfg/services/ApiService.dart';
 import 'package:tfg/widgets/articulo.dart';
 import 'package:tfg/widgets/components/RoundedContainer.dart';
 import 'package:tfg/widgets/components/TopRoundedContainer.dart';
-import 'package:tfg/widgets/pedido.dart';
 
 import 'package:tfg/models/ArticuloModel.dart';
 //TODO: OPCIONAL Color

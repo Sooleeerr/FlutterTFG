@@ -39,14 +39,20 @@ class _HomeState extends State<Home> {
     });
   }
 
+  void updateCurrentIndex(int newIndex) {
+    setState(() {
+      _selectedIndex = newIndex;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> _pages = <Widget>[
       ListaArticulos(),
       ListaArticulosPromocion(),
       Carrito(
-        carrito: (Provider.of<CarritoProvider>(context)),
-      ),
+          carrito: (Provider.of<CarritoProvider>(context)),
+          callback: updateCurrentIndex),
       Perfil(),
       //Administrador()
       Filtrado(),

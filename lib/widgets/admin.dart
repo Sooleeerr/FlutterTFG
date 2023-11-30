@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tfg/widgets/pedido.dart';
+
 //TODO Diseño
 //TODO Pantalla
 
@@ -72,28 +72,6 @@ class Administrador extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 20,
                   decoration: TextDecoration.underline,
-                ),
-              ),
-            ),
-            Flexible(
-              //flex: 9,
-              child: Container(
-                margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black, width: 2),
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                child: GridView.count(
-                  crossAxisCount: 1,
-                  padding: EdgeInsets.all(20),
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 20,
-                  children: <Widget>[
-                    Pedido(),
-                    Pedido(),
-                    Pedido(),
-                    Pedido(),
-                    Pedido(),
-                  ],
                 ),
               ),
             ),
