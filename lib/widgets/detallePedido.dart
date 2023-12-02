@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tfg/constants.dart';
-import 'package:tfg/models/PedidoModel.dart';
+import 'package:tfg/models/pedido_model.dart';
 import 'package:tfg/services/ApiService.dart';
 import 'package:tfg/widgets/articuloDetallePedido.dart';
 

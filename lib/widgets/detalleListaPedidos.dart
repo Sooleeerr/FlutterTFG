@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:tfg/constants.dart';
-import 'package:tfg/models/ListaPedidosModel.dart';
+import 'package:tfg/models/lista_pedidos_model.dart';
 import 'package:tfg/widgets/components/RoundedContainer.dart';
 import 'package:tfg/widgets/detallePedido.dart';
 

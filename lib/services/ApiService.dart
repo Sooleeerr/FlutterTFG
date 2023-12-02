@@ -1,13 +1,17 @@
+import 'dart:convert';
 import 'dart:developer';
+import 'dart:ffi';
 
 import 'package:http/http.dart' as http;
-import 'package:tfg/models/ArticulosRelacionadosModel.dart';
-import 'package:tfg/models/ListaPedidosModel.dart';
-import 'package:tfg/models/PedidoModel.dart';
-import 'package:tfg/models/Respuesta.dart';
-import 'package:tfg/models/RespuestaCreacionPedido.dart';
-import 'package:tfg/models/UsuarioModel.dart';
-import 'package:tfg/models/CarritoModel.dart';
+import 'package:tfg/models/articulos_relacionados_model.dart';
+import 'package:tfg/models/filtro_model.dart';
+import 'package:tfg/models/lista_pedidos_model.dart';
+import 'package:tfg/models/pedido_model.dart';
+import 'package:tfg/models/respuesta.dart';
+import 'package:tfg/models/respuesta_creacion_pedido.dart';
+import 'package:tfg/models/usuario_model.dart';
+import 'package:tfg/models/carrito_model.dart';
+import 'package:tfg/models/valores_unicos.dart';
 
 import '../models/ArticuloModel.dart';
 
@@ -27,6 +31,8 @@ class Constants {
   static String realizarPedidoEndpoint = "/realizarPedido";
   static String detallePedidoEndpoint = "/detallePedido";
   static String listaPedidosEndpoint = "/listaPedidos";
+  static String filtradoOpcionesEndpoint = "/filtradoOpciones";
+  static String contarListaArticulosEndpoint = "/contarListaArticulos";
 }
 
 class ApiService {
@@ -208,9 +214,48 @@ class ApiService {
     return;
   }
 
-  Future<List<ArticuloModel>?> getListaArticulos() async {
+  String parametroListaArticulos(FiltroModel filtro) {
+    String parametrosMarca = "";
+    String parametrosModelo = "";
+    String parametrosColor = "";
+    String parametrosAlmacenamiento = "";
+    if (filtro.valoresMarca.isNotEmpty) {
+      parametrosMarca =
+          filtro.valoresMarca.map((item) => 'marcaArticulo=$item').join('&') +
+              "&";
+    }
+    if (filtro.valoresModelo.isNotEmpty) {
+      parametrosModelo =
+          filtro.valoresModelo.map((item) => 'modeloArticulo=$item').join('&') +
+              "&";
+    }
+    if (filtro.valoresColor.isNotEmpty) {
+      parametrosColor =
+          filtro.valoresColor.map((item) => 'colorArticulo=$item').join('&') +
+              "&";
+    }
+    if (filtro.valoresAlmacenamiento.isNotEmpty) {
+      parametrosAlmacenamiento = filtro.valoresAlmacenamiento
+              .map((item) => 'almacenamientoArticulo=$item')
+              .join('&') +
+          "&";
+    }
+    return parametrosAlmacenamiento +
+        parametrosColor +
+        parametrosMarca +
+        parametrosModelo +
+        "&precioMinimo=${filtro.precioMin}" +
+        "&precioMaximo=${filtro.precioMax}";
+  }
+
+  Future<List<ArticuloModel>?> getListaArticulos(FiltroModel filtro) async {
     try {
-      var url = Uri.parse(Constants.baseUrl + Constants.listaArticulosEndpoint);
+      var url = Uri.parse(Constants.baseUrl +
+          Constants.listaArticulosEndpoint +
+          "/?sortPrecio=" +
+          filtro.ordenacion.toString() +
+          "&" +
+          parametroListaArticulos(filtro));
       var response = await http.get(url);
       if (response.statusCode == 200) {
         List<ArticuloModel> _model = articuloModelFromJson(response.body);
@@ -220,6 +265,23 @@ class ApiService {
       log(e.toString());
     }
     return null;
+  }
+
+  Future<int?> getContarListaArticulos(FiltroModel filtro) async {
+    try {
+      var url = Uri.parse(Constants.baseUrl +
+          Constants.contarListaArticulosEndpoint +
+          "/?" +
+          parametroListaArticulos(filtro));
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        int resultado = int.parse(response.body);
+        return resultado;
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+    return 0;
   }
 
   Future<List<ArticulosRelacionadosModel>?> getListaArticulosRelacionados(
@@ -283,6 +345,24 @@ class ApiService {
       if (response.statusCode == 200) {
         PedidoModel pedido = pedidoModelFromJson(response.body);
         return pedido;
+      }
+    } catch (e) {
+      log(e.toString());
+      return null;
+    }
+    return null;
+  }
+
+  Future<List<String>?> getFiltradoOpciones(atributo) async {
+    try {
+      var url = Uri.parse(Constants.baseUrl +
+          Constants.filtradoOpcionesEndpoint +
+          "/?atributo=" +
+          atributo);
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        List<String> valoresUnicos = jsonDecode(response.body).cast<String>();
+        return valoresUnicos;
       }
     } catch (e) {
       log(e.toString());

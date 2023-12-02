@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tfg/constants.dart';
-import 'package:tfg/models/CarritoModel.dart';
-import 'package:tfg/models/Respuesta.dart';
-import 'package:tfg/models/RespuestaCreacionPedido.dart';
+import 'package:tfg/models/carrito_model.dart';
+import 'package:tfg/models/respuesta.dart';
+import 'package:tfg/models/respuesta_creacion_pedido.dart';
 import 'package:tfg/providers/CarritoProvider.dart';
 
 import 'package:tfg/widgets/articuloCarrito.dart';

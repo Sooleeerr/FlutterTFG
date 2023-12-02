@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg/constants.dart';
-import 'package:tfg/models/UsuarioModel.dart';
+import 'package:tfg/models/usuario_model.dart';
 import 'package:tfg/providers/CarritoProvider.dart';
+
 import 'package:tfg/services/ApiService.dart';
 import 'package:tfg/theme.dart';
 import 'package:tfg/widgets/registro.dart';
@@ -60,6 +61,10 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  _inicializaProviders() {
+    Provider.of<CarritoProvider>(context, listen: false).inicializarCarrito();
+  }
+
   _acceder() async {
     String textoSnackBar;
     Future<bool> res = _getUsuario(usuarioTextField, passwordTextField);
@@ -69,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
       prefs.setString('nombre_usuario', _usuarioModel!.nombreUsuario);
       prefs.setString('correo_usuario', _usuarioModel!.emailUsuario);
       prefs.setString('password_usuario', _usuarioModel!.contraseaUsuario);
-      Provider.of<CarritoProvider>(context, listen: false).inicializarCarrito();
+      _inicializaProviders();
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => Home()),

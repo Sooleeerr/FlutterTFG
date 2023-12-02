@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tfg/models/CarritoModel.dart';
+import 'package:tfg/models/carrito_model.dart';
 
 class CarritoProvider extends ChangeNotifier {
   CarritoModel carritoModel = CarritoModel(numeroArticulos: 0);

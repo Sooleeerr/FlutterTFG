@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:tfg/models/Respuesta.dart';
+import 'package:tfg/models/respuesta.dart';
 import 'package:tfg/services/ApiService.dart';
 import 'package:tfg/widgets/listaPedidos.dart';
 import 'package:tfg/widgets/components/menuPerfil.dart';

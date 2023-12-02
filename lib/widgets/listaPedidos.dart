@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tfg/models/ListaPedidosModel.dart';
+import 'package:tfg/models/lista_pedidos_model.dart';
 import 'package:tfg/services/ApiService.dart';
 import 'package:tfg/widgets/detalleListaPedidos.dart';
 
@@ -107,15 +107,6 @@ class _ListaPedidosState extends State<ListaPedidos> {
                           ),
                         ),
                       ),
-                /*child: ListView.builder(
-              itemCount: 15,
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: DetalleListaPedidos(),
-              ),
-            ),*/
-
-                //      : Text("No tienes artículos en tu carrito"),
               ],
             ),
           );

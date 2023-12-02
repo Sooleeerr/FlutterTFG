@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tfg/constants.dart';
-import 'package:tfg/models/CarritoModel.dart';
+import 'package:tfg/models/carrito_model.dart';
 import 'package:tfg/widgets/detalleArticulo.dart';
 
 class ArticuloCarrito extends StatelessWidget {

@@ -3,7 +3,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg/constants.dart';
-import 'package:tfg/models/Respuesta.dart';
+import 'package:tfg/models/respuesta.dart';
 import 'package:tfg/services/ApiService.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -82,6 +82,30 @@ class _ModificacionDatosState extends State<ModificacionDatos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF5F6F9),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            style: ElevatedButton.styleFrom(
+              shape: const CircleBorder(),
+              padding: EdgeInsets.zero,
+              elevation: 0,
+              backgroundColor: Colors.white,
+            ),
+            child: const Icon(
+              Icons.arrow_back_ios_new,
+              color: Colors.black,
+              size: 20,
+            ),
+          ),
+        ),
+      ),
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.all(20),

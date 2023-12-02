@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tfg/constants.dart';
-import 'package:tfg/models/CarritoModel.dart';
+import 'package:tfg/models/carrito_model.dart';
 import 'package:tfg/providers/CarritoProvider.dart';
 
 import 'package:tfg/widgets/admin.dart';
@@ -55,7 +55,7 @@ class _HomeState extends State<Home> {
           callback: updateCurrentIndex),
       Perfil(),
       //Administrador()
-      Filtrado(),
+      //Filtrado(),
     ];
 
     return Scaffold(
