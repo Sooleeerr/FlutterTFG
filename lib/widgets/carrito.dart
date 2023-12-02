@@ -75,7 +75,8 @@ class _CarritoState extends State<Carrito> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('¿Acepta el pago de ${carritoModel.precioTotal} €?'),
+          title: Text(
+              '¿Acepta el pago de ${numberFormatter.format(carritoModel.precioTotal)} €?'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
@@ -137,6 +138,9 @@ class _CarritoState extends State<Carrito> {
     CarritoProvider carrito = Provider.of<CarritoProvider>(context);
     carritoModel = carrito.carritoModel;
     return Column(children: [
+      SizedBox(
+        height: 30,
+      ),
       const Text(
         "Tu carrito",
         style: TextStyle(color: Colors.black),

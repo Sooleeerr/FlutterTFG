@@ -4,6 +4,7 @@ import 'dart:ffi';
 
 import 'package:http/http.dart' as http;
 import 'package:tfg/models/articulos_relacionados_model.dart';
+import 'package:tfg/models/articulos_visitados_model.dart';
 import 'package:tfg/models/filtro_model.dart';
 import 'package:tfg/models/lista_pedidos_model.dart';
 import 'package:tfg/models/pedido_model.dart';
@@ -33,6 +34,7 @@ class Constants {
   static String listaPedidosEndpoint = "/listaPedidos";
   static String filtradoOpcionesEndpoint = "/filtradoOpciones";
   static String contarListaArticulosEndpoint = "/contarListaArticulos";
+  static String listaArticulosVisitadosEndpoint = "/articulosVisitados";
 }
 
 class ApiService {
@@ -295,6 +297,25 @@ class ApiService {
       if (response.statusCode == 200) {
         List<ArticulosRelacionadosModel> _model =
             articulosRelacionadosModelFromJson(response.body);
+        return _model;
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+    return null;
+  }
+
+  Future<List<ArticulosVisitadosModel>?> getListaArticulosVisitados(
+      String idUsuario) async {
+    try {
+      var url = Uri.parse(Constants.baseUrl +
+          Constants.listaArticulosVisitadosEndpoint +
+          "/?idUsuario=" +
+          idUsuario);
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        List<ArticulosVisitadosModel> _model =
+            articulosVisitadosModelFromJson(response.body);
         return _model;
       }
     } catch (e) {

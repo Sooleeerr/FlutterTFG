@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 import 'package:tfg/constants.dart';
 import 'package:tfg/models/filtro_model.dart';
-import 'package:tfg/providers/CarritoProvider.dart';
 
 import 'package:tfg/widgets/articulo.dart';
-import 'package:tfg/widgets/components/search_field.dart';
+
 import 'package:tfg/widgets/filtrado.dart';
-import 'package:tfg/widgets/search/CabeceraProductos.dart';
+
 import 'package:tfg/widgets/ordenacion.dart';
 import '../models/ArticuloModel.dart';
 import '../services/ApiService.dart';
-//TODO [A] Meter fitrado
+
 //TODO: OPCIONAL Diseño Articulos Visitados, promos
 
 class ListaArticulos extends StatefulWidget {
@@ -57,12 +56,23 @@ class _ListaArticulosState extends State<ListaArticulos> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(child: SearchField()),
-              SizedBox(width: 16),
+              //Expanded(child: SearchField()),
+              //SizedBox(width: 100),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 4,
+                ),
+                child: Image.asset(
+                  "assets/images/mundomovil_round.png",
+                  scale: 1.75,
+                ),
+              ),
+              Text("Mundo Móvil"),
+              SizedBox(width: 120),
               IconButton(
                 iconSize: 22,
                 icon: Icon(Icons.swap_vert),

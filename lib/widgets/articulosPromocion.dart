@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tfg/models/articulos_visitados_model.dart';
 import 'package:tfg/widgets/articulo.dart';
+import 'package:tfg/widgets/components/articulos_visitados.dart';
+import 'package:tfg/widgets/components/image_tag.dart';
 import '../models/ArticuloModel.dart';
 import '../services/ApiService.dart';
 
@@ -12,15 +16,27 @@ class ListaArticulosPromocion extends StatefulWidget {
 }
 
 class _ListaArticulosPromocionState extends State<ListaArticulosPromocion> {
+  late SharedPreferences _prefs;
+  String _idUsuario = "";
   late List<ArticuloModel>? _listaArticulosModel = [];
+  late List<ArticulosVisitadosModel>? _listaArticulosVisitadosModel = [];
   @override
   void initState() {
     super.initState();
     _getDataListaArticulosPromocion();
+    _getArticulosVisitados();
   }
 
   void _getDataListaArticulosPromocion() async {
     _listaArticulosModel = (await ApiService().getListaArticulosPromocion())!;
+    Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
+  }
+
+  void _getArticulosVisitados() async {
+    _prefs = await SharedPreferences.getInstance();
+    _idUsuario = _prefs.getString('correo_usuario') ?? '';
+    _listaArticulosVisitadosModel =
+        (await ApiService().getListaArticulosVisitados(_idUsuario))!;
     Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
   }
 
@@ -30,14 +46,126 @@ class _ListaArticulosPromocionState extends State<ListaArticulosPromocion> {
         ? const Center(
             child: CircularProgressIndicator(),
           )
-        : GridView.count(
-            crossAxisCount: 2,
-            children: List.generate(_listaArticulosModel!.length, (index) {
-              return Articulo(
-                articulo: _listaArticulosModel![index],
-                miniatura: false,
-              );
-            }),
+        : Column(
+            children: [
+              SizedBox(
+                height: 40,
+              ),
+              const Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  "Artículos recién visitados",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20, bottom: 20),
+                child: ArticulosVisitados(
+                  articulosVisitados: _listaArticulosVisitadosModel!,
+                ),
+              ),
+              /*Row(children: [
+                ImageTag(
+                  image: "assets/images/apple-logo.png",
+                  text: "Apple",
+                  press: () {},
+                ),
+                ImageTag(
+                  image: "assets/images/samsung-logo.png",
+                  text: "Samsung",
+                  press: () {},
+                ),
+                ImageTag(
+                  image: "assets/images/xiaomi-logo.png",
+                  text: "Xiaomi",
+                  press: () {},
+                ),
+              ]),*/
+              const Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  "Nuestras Marcas",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              Row(children: [
+                ImageTag(
+                  image: "assets/images/apple-logo.png",
+                  text: "Apple",
+                  press: () {},
+                ),
+                ImageTag(
+                  image: "assets/images/samsung-logo.png",
+                  text: "Samsung",
+                  press: () {},
+                ),
+                ImageTag(
+                  image: "assets/images/xiaomi-logo.png",
+                  text: "Xiaomi",
+                  press: () {},
+                ),
+              ]),
+              /*Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
+                  height: 150,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        ...List.generate(
+                          _listaArticulosModel!.length,
+                          (index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(left: 2),
+                              child: Articulo(
+                                articulo: _listaArticulosModel![index],
+                                miniatura: true,
+                              ),
+                            );
+                          },
+                        ),
+                        const SizedBox(width: 20),
+                      ],
+                    ),
+                  ),
+                ),
+              ),*/
+              const Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  "Artículos en oferta",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 100.0, right: 100),
+                  child: GridView.count(
+                    crossAxisCount: 1,
+                    children:
+                        List.generate(_listaArticulosModel!.length, (index) {
+                      return Articulo(
+                        articulo: _listaArticulosModel![index],
+                        miniatura: false,
+                      );
+                    }),
+                  ),
+                ),
+              ),
+            ],
           );
   }
 }

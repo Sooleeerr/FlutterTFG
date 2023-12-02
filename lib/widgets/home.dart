@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     List<Widget> _pages = <Widget>[
       ListaArticulos(),
-      ListaArticulosPromocion(),
+      ListaArticulosPromocion(key: UniqueKey()),
       Carrito(
           carrito: (Provider.of<CarritoProvider>(context)),
           callback: updateCurrentIndex),

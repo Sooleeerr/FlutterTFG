@@ -32,7 +32,7 @@ class Articulo extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Flexible(
+              Expanded(
                 flex: 8,
                 child: Image(
                   image: NetworkImage(articulo.fotoArticulo!),
@@ -41,7 +41,7 @@ class Articulo extends StatelessWidget {
               const SizedBox(
                 height: 6,
               ),
-              Flexible(
+              Expanded(
                 flex: 2,
                 child: Container(
                   alignment: Alignment.centerLeft,

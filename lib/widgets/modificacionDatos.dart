@@ -115,13 +115,10 @@ class _ModificacionDatosState extends State<ModificacionDatos> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Tus datos",
-                  style: TextStyle(
-                    fontSize: 20,
-                    decoration: TextDecoration.underline,
-                  ),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 40.0),
               TextField(
                 decoration: InputDecoration(labelText: "Nombre"),
                 controller: _controllerNombre,

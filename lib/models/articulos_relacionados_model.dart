@@ -15,7 +15,6 @@ class ArticulosRelacionadosModel {
   String? sId;
   String? idArticulo1;
   String? idArticulo2;
-  //List<DetalleArticulo>? detalleArticulo;
   List<ArticuloModel>? detalleArticulo;
   ArticulosRelacionadosModel(
       {this.sId, this.idArticulo1, this.idArticulo2, this.detalleArticulo});
@@ -41,59 +40,6 @@ class ArticulosRelacionadosModel {
       data['detalle_articulo'] =
           this.detalleArticulo!.map((v) => v.toJson()).toList();
     }
-    return data;
-  }
-}
-
-class DetalleArticulo {
-  String? sId;
-  String? nombreArticulo;
-  String? marcaArticulo;
-  String? modeloArticulo;
-  int? precioArticulo;
-  String? colorArticulo;
-  String? almacenamientoArticulo;
-  String? fotoArticulo;
-  String? idArticulo;
-  String? articuloPromocion;
-
-  DetalleArticulo(
-      {this.sId,
-      this.nombreArticulo,
-      this.marcaArticulo,
-      this.modeloArticulo,
-      this.precioArticulo,
-      this.colorArticulo,
-      this.almacenamientoArticulo,
-      this.fotoArticulo,
-      this.idArticulo,
-      this.articuloPromocion});
-
-  DetalleArticulo.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    nombreArticulo = json['nombre_articulo'];
-    marcaArticulo = json['marca_articulo'];
-    modeloArticulo = json['modelo_articulo'];
-    precioArticulo = json['precio_articulo'];
-    colorArticulo = json['color_articulo'];
-    almacenamientoArticulo = json['almacenamiento_articulo'];
-    fotoArticulo = json['foto_articulo'];
-    idArticulo = json['id_articulo'];
-    articuloPromocion = json['articulo_promocion'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['nombre_articulo'] = this.nombreArticulo;
-    data['marca_articulo'] = this.marcaArticulo;
-    data['modelo_articulo'] = this.modeloArticulo;
-    data['precio_articulo'] = this.precioArticulo;
-    data['color_articulo'] = this.colorArticulo;
-    data['almacenamiento_articulo'] = this.almacenamientoArticulo;
-    data['foto_articulo'] = this.fotoArticulo;
-    data['id_articulo'] = this.idArticulo;
-    data['articulo_promocion'] = this.articuloPromocion;
     return data;
   }
 }
