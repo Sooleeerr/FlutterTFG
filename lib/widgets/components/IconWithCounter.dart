@@ -26,7 +26,7 @@ class IconWithCounter extends StatelessWidget {
                     color: kSecondaryColor.withOpacity(0.1),
                     shape: BoxShape.circle,
                   )
-                : BoxDecoration(),
+                : const BoxDecoration(),
             child: Icon(icon),
           ),
           if (numOfItem != 0)
@@ -37,7 +37,6 @@ class IconWithCounter extends StatelessWidget {
                 height: 20,
                 width: 20,
                 decoration: BoxDecoration(
-                  //color: const Color(0xFFFF4848),
                   color: kPrimaryColor,
                   shape: BoxShape.circle,
                   border: Border.all(width: 1.5, color: Colors.white),

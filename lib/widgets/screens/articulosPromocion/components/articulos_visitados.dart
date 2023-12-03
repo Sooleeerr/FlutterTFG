@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tfg/models/articulos_visitados_model.dart';
-import 'package:tfg/widgets/articulo.dart';
+import 'package:tfg/widgets/screens/listaArticulos/components/articulo.dart';
 
 class ArticulosVisitados extends StatelessWidget {
   final List<ArticulosVisitadosModel> articulosVisitados;
@@ -9,6 +9,7 @@ class ArticulosVisitados extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: sized_box_for_whitespace
     return Container(
       height: 150,
       child: SingleChildScrollView(

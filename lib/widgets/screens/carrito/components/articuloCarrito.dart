@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfg/constants.dart';
 import 'package:tfg/models/carrito_model.dart';
-import 'package:tfg/widgets/detalleArticulo.dart';
+import 'package:tfg/widgets/screens/detalleArticulo/detalleArticulo.dart';
 
 class ArticuloCarrito extends StatelessWidget {
   final ListaArticulosPedido articuloCarrito;
@@ -64,7 +64,7 @@ class ArticuloCarrito extends StatelessWidget {
                             },
                           ),
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         CircleAvatar(
                           backgroundColor: Colors.grey[350],
                           radius: 14,
@@ -112,40 +112,6 @@ class ArticuloCarrito extends StatelessWidget {
               ],
             ),
           )
-          /*Flexible(
-            flex: 4,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-
-                Row(
-                  children: [
-                    Column(
-                      children: [
-                        IconButton(
-                          iconSize: 12,
-                          icon: const Icon(Icons.add),
-                          onPressed: () {
-                            print('Botón presionado');
-                            ;
-                          },
-                        ),
-                        IconButton(
-                          iconSize: 12,
-                          icon: const Icon(Icons.remove),
-                          onPressed: () {
-                            print('Botón presionado');
-                            ;
-                          },
-                        ),
-                      ],
-                    ),
-
-                  ],
-                ),
-              ],
-            ),
-          ),*/
         ],
       ),
     );

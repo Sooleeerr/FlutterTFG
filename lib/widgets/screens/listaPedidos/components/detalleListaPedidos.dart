@@ -1,10 +1,8 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:tfg/constants.dart';
 import 'package:tfg/models/lista_pedidos_model.dart';
 import 'package:tfg/widgets/components/RoundedContainer.dart';
-import 'package:tfg/widgets/detallePedido.dart';
+import 'package:tfg/widgets/screens/detallePedido/detallePedido.dart';
 
 class DetalleListaPedidos extends StatelessWidget {
   final ListaPedidosModel listaPedidosModel;
@@ -18,7 +16,7 @@ class DetalleListaPedidos extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => detallePedido(
+            builder: (context) => DetallePedido(
               numPedido: listaPedidosModel.idPedido.toString(),
               vieneCompra: false,
             ),
@@ -35,7 +33,7 @@ class DetalleListaPedidos extends StatelessWidget {
                 child: Text(
                   dateFormatter.format(
                       DateTime.parse(listaPedidosModel.fechaPedido.toString())),
-                  style: TextStyle(fontSize: 11),
+                  style: const TextStyle(fontSize: 11),
                 ),
               ),
               Expanded(
@@ -43,16 +41,18 @@ class DetalleListaPedidos extends StatelessWidget {
               ),
               Expanded(
                 child: Container(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                        "${numberFormatter.format(listaPedidosModel.precioPedido)} €",
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: kTextColor,
-                        ))),
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    "${numberFormatter.format(listaPedidosModel.precioPedido)} €",
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: kTextColor,
+                    ),
+                  ),
+                ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
                 height: 40,
               ),
@@ -60,7 +60,7 @@ class DetalleListaPedidos extends StatelessWidget {
                 Icons.arrow_forward,
                 color: kPrimaryColor,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
             ],

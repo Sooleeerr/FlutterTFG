@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-//import 'package:flutter_paypal/flutter_paypal.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,12 +7,11 @@ import 'package:tfg/models/respuesta.dart';
 import 'package:tfg/models/respuesta_creacion_pedido.dart';
 import 'package:tfg/providers/CarritoProvider.dart';
 
-import 'package:tfg/widgets/articuloCarrito.dart';
-import 'package:tfg/widgets/detallePedido.dart';
-//import 'package:uni_links/uni_links.dart';
-import '../services/ApiService.dart';
+import 'package:tfg/widgets/screens/carrito/components/articuloCarrito.dart';
+import 'package:tfg/widgets/screens/detallePedido/detallePedido.dart';
 
-//TODO Meter en la API de Hacer Pedido el envio de email
+import '../../../services/ApiService.dart';
+
 //TODO Integrar Checkout
 
 class Carrito extends StatefulWidget {
@@ -48,7 +45,6 @@ class _CarritoState extends State<Carrito> {
   }
 
   void modificaArticulosCallBack(anadirBool, idArticulo, precioArticulo) async {
-    //print("${anadirBool} de ${idArticulo}");
     Respuesta registroOK = (await ApiService().modificarCarrito(
         _usuario, idArticulo, anadirBool ? "+1" : "-1", precioArticulo));
     _getCarrito();
@@ -59,8 +55,9 @@ class _CarritoState extends State<Carrito> {
         await ApiService().realizarPedido(_usuario);
     if (registroOK != null) {
       _getCarrito();
+      // ignore: avoid_single_cascade_in_expression_statements
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => detallePedido(
+          builder: (context) => DetallePedido(
                 numPedido: registroOK.idPedido.toString(),
                 vieneCompra: true,
               )))
@@ -83,19 +80,17 @@ class _CarritoState extends State<Carrito> {
                 ElevatedButton(
                   onPressed: () {
                     Future<String?> _respuesta = _aceptarPedido();
-                    if (_respuesta != null) {
-                    } else {}
 
                     ;
                   },
-                  child: Text('Pagar'),
+                  child: const Text('Pagar'),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('Cancelar'),
+                  child: const Text('Cancelar'),
                 ),
               ],
             ),
@@ -105,34 +100,6 @@ class _CarritoState extends State<Carrito> {
     );
   }
 
-/*
-  Future<void> initUniLinks() async {
-    try {
-      Uri? initialUri = await getInitialUri();
-      handleIncomingLinks(initialUri.toString());
-    } on Exception {
-      // Handle any exceptions
-    }
-
-    uriLinkStream.listen((Uri? uri) {
-      if (uri != null) {
-        handleIncomingLinks(uri.toString());
-      }
-    });
-  }
-
-  void handleIncomingLinks(String link) {
-    if (link == 'mundomoviltfg://payment_success') {
-      // Handle successful payment from PayPal
-      print('Payment success from PayPal incominglinks');
-      // Perform additional actions for successful payment
-    } else if (link == 'mundomoviltfg://payment_cancel') {
-      // Handle canceled payment from PayPal
-      print('Payment canceled from PayPal incominglinks');
-      // Perform additional actions for canceled payment
-    }
-  }
-*/
   @override
   Widget build(BuildContext context) {
     CarritoProvider carrito = Provider.of<CarritoProvider>(context);
@@ -150,7 +117,7 @@ class _CarritoState extends State<Carrito> {
               "${carritoModel.numeroArticulos.toString()} artículos",
               style: Theme.of(context).textTheme.bodySmall,
             )
-          : SizedBox(),
+          : const SizedBox(),
       carrito.carritoModel.numeroArticulos != 0 &&
               carrito.carritoModel.numeroArticulos != null
           ? Expanded(
@@ -168,7 +135,7 @@ class _CarritoState extends State<Carrito> {
             )
           : Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 80,
                 ),
                 Container(
@@ -178,18 +145,14 @@ class _CarritoState extends State<Carrito> {
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 80,
                 ),
-                Icon(
+                const Icon(
                   Icons.remove_shopping_cart,
                   size: 150,
                   color: kPrimaryColor,
                 ),
-                /*Image.asset(
-                  'assets/images/no_shopping_cart.png',
-                  scale: 4,
-                ),*/
               ],
             ),
       Container(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppBarAtras extends StatelessWidget {
+class AppBarAtras extends StatelessWidget implements PreferredSizeWidget {
   const AppBarAtras({Key? key}) : super(key: key);
 
   @override
@@ -29,4 +29,7 @@ class AppBarAtras extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  Size get preferredSize => AppBar().preferredSize;
 }

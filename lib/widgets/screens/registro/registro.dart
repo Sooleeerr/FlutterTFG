@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfg/models/respuesta.dart';
 import 'package:tfg/services/ApiService.dart';
+import 'package:tfg/widgets/components/appBarAtras.dart';
 
 //TODO Revisar APPBAR
 class Registro extends StatefulWidget {
@@ -48,11 +49,10 @@ class _RegistroState extends State<Registro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Center(
-            child: Text("Regístrate"),
-          ),
-        ),
+        extendBody: false,
+        extendBodyBehindAppBar: false,
+        backgroundColor: const Color(0xFFF5F6F9),
+        appBar: AppBarAtras(),
         body: SafeArea(
           child: Container(
             padding: EdgeInsets.all(40),
@@ -71,6 +71,7 @@ class _RegistroState extends State<Registro> {
                 SizedBox(height: 20.0),
                 TextField(
                   decoration: InputDecoration(labelText: "Introduce tu correo"),
+                  keyboardType: TextInputType.emailAddress,
                   onChanged: (texto) {
                     _email = texto;
                   },

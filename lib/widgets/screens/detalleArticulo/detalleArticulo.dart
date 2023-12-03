@@ -9,7 +9,8 @@ import 'package:tfg/models/articulos_relacionados_model.dart';
 import 'package:tfg/models/respuesta.dart';
 import 'package:tfg/providers/CarritoProvider.dart';
 import 'package:tfg/services/ApiService.dart';
-import 'package:tfg/widgets/articulo.dart';
+import 'package:tfg/widgets/components/appBarAtras.dart';
+import 'package:tfg/widgets/screens/listaArticulos/components/articulo.dart';
 import 'package:tfg/widgets/components/RoundedContainer.dart';
 import 'package:tfg/widgets/components/TopRoundedContainer.dart';
 
@@ -19,7 +20,7 @@ import 'package:tfg/models/ArticuloModel.dart';
 class DetalleArticulo extends StatefulWidget {
   final String idArticulo;
 
-  const DetalleArticulo({required this.idArticulo});
+  const DetalleArticulo({Key? key, required this.idArticulo}) : super(key: key);
 
   @override
   State<DetalleArticulo> createState() => _DetalleArticuloState();
@@ -55,8 +56,6 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
     registroOK = (await ApiService().modificarCarrito(
         idUsuario, idArticulo, cantidadArticulo, precioArticulo));
 
-    //Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
-
     return Future.value(registroOK.getRespuestaCorrecta);
   }
 
@@ -76,8 +75,6 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
       content: Text(textoSnackBar),
     );
 
-    // Find the ScaffoldMessenger in the widget tree
-    // and use it to show a SnackBar.
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
@@ -95,32 +92,8 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
             extendBody: false,
             extendBodyBehindAppBar: false,
             backgroundColor: const Color(0xFFF5F6F9),
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              leading: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shape: const CircleBorder(),
-                    padding: EdgeInsets.zero,
-                    elevation: 0,
-                    backgroundColor: Colors.white,
-                  ),
-                  child: const Icon(
-                    Icons.arrow_back_ios_new,
-                    color: Colors.black,
-                    size: 20,
-                  ),
-                ),
-              ),
-            ),
-            body:
-                //child: ListView(
-                SingleChildScrollView(
+            appBar: AppBarAtras(),
+            body: SingleChildScrollView(
               child: Column(
                 children: [
                   Container(
@@ -151,9 +124,6 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
                                     color: kTextColor,
                                   ),
                                 ),
-                                /*SizedBox(
-                                    height: 40,
-                                  ),*/
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
@@ -200,7 +170,6 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
                                             style: const TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
-                                              //decoration: TextDecoration.lineThrough,
                                               color: kTextColor,
                                             ),
                                           )
@@ -210,7 +179,6 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
                                             style: const TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
-                                              //decoration: TextDecoration.lineThrough,
                                               color: kTextColor,
                                             ),
                                           )
@@ -229,7 +197,7 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
                     color: Color.fromARGB(255, 255, 255, 255),
                     child: DataTable(
                       columnSpacing: 10,
-                      columns: [
+                      columns: const [
                         DataColumn(label: Expanded(child: Text("Marca"))),
                         DataColumn(label: Expanded(child: Text("Modelo"))),
                         DataColumn(label: Expanded(child: Text("Color"))),
@@ -295,24 +263,6 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
                                     );
                                   }),
                                 ),
-                                /*SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Row(
-                                    children: [
-                                      ...List.generate(
-                                        articulosRelacionados.length,
-                                        (index) {
-                                          return Articulo(
-                                            articulo: articulosRelacionados[index]
-                                                .detalleArticulo!
-                                                .first,
-                                          );
-                                        },
-                                      ),
-                                      const SizedBox(width: 20),
-                                    ],
-                                  ),
-                                )*/
                               ],
                             ),
                           ),

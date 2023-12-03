@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:ffi';
 
 import 'package:http/http.dart' as http;
 import 'package:tfg/models/articulos_relacionados_model.dart';
@@ -12,7 +11,6 @@ import 'package:tfg/models/respuesta.dart';
 import 'package:tfg/models/respuesta_creacion_pedido.dart';
 import 'package:tfg/models/usuario_model.dart';
 import 'package:tfg/models/carrito_model.dart';
-import 'package:tfg/models/valores_unicos.dart';
 
 import '../models/ArticuloModel.dart';
 

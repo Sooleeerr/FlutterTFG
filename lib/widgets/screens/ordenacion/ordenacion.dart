@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 
 import 'package:tfg/constants.dart';
 import 'package:tfg/models/filtro_model.dart';
+import 'package:tfg/widgets/components/appBarAtras.dart';
 
 class Ordenacion extends StatefulWidget {
   final Function(FiltroModel) callback;
   final FiltroModel filtroModel;
 
-  Ordenacion({Key? key, required this.callback, required this.filtroModel})
+  const Ordenacion(
+      {Key? key, required this.callback, required this.filtroModel})
       : super(key: key);
 
   @override
@@ -21,7 +23,6 @@ class _OrdenacionState extends State<Ordenacion> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     selectedOption = widget.filtroModel.ordenacion;
   }
@@ -32,29 +33,7 @@ class _OrdenacionState extends State<Ordenacion> {
       extendBody: false,
       extendBodyBehindAppBar: false,
       backgroundColor: const Color(0xFFF5F6F9),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            style: ElevatedButton.styleFrom(
-              shape: const CircleBorder(),
-              padding: EdgeInsets.zero,
-              elevation: 0,
-              backgroundColor: Colors.white,
-            ),
-            child: const Icon(
-              Icons.arrow_back_ios_new,
-              color: Colors.black,
-              size: 20,
-            ),
-          ),
-        ),
-      ),
+      appBar: AppBarAtras(),
       body: Column(
         children: [
           const Text(

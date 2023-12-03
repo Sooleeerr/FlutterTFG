@@ -6,10 +6,10 @@ import 'package:tfg/providers/CarritoProvider.dart';
 
 import 'package:tfg/services/ApiService.dart';
 import 'package:tfg/theme.dart';
-import 'package:tfg/widgets/registro.dart';
+import 'package:tfg/widgets/screens/registro/registro.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'home.dart';
+import '../home/home.dart';
 //TODO OPCIONAL: Olvidarse contraseña
 
 class Login extends StatefulWidget {
@@ -26,7 +26,7 @@ class _LoginState extends State<Login> {
       debugShowCheckedModeBanner: false,
       title: 'Material App',
       theme: AppTheme.lightTheme(context),
-      home: Scaffold(
+      home: const Scaffold(
         body: LoginPage(),
       ),
     );
@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
       _inicializaProviders();
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Home()),
+        MaterialPageRoute(builder: (context) => const Home()),
       );
     } else {
       textoSnackBar = "Usuario y/o contraseña no válido";
@@ -85,9 +85,6 @@ class _LoginPageState extends State<LoginPage> {
     final snackBar = SnackBar(
       content: Text(textoSnackBar),
     );
-
-    // Find the ScaffoldMessenger in the widget tree
-    // and use it to show a SnackBar.
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
@@ -95,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        padding: EdgeInsets.all(40),
+        padding: const EdgeInsets.all(40),
         child: Column(
           children: [
             const SizedBox(height: 60),
@@ -113,28 +110,28 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 30),
             TextField(
-              decoration: InputDecoration(labelText: "Correo"),
+              decoration: const InputDecoration(labelText: "Correo"),
               onChanged: (texto) {
                 usuarioTextField = texto;
               },
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             TextField(
-              decoration: InputDecoration(labelText: "Contraseña"),
+              decoration: const InputDecoration(labelText: "Contraseña"),
               obscureText: true,
               onChanged: (texto) {
                 passwordTextField = texto;
               },
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
                 _acceder();
               },
-              child: Text('Acceder'),
+              child: const Text('Acceder'),
             ),
-            SizedBox(height: 10.0),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -145,7 +142,7 @@ class _LoginPageState extends State<LoginPage> {
                 GestureDetector(
                   onTap: () => Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Registro()),
+                    MaterialPageRoute(builder: (context) => const Registro()),
                   ),
                   child: const Text(
                     "Registrate",

@@ -2,19 +2,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-//import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:tfg/constants.dart';
-import 'package:tfg/models/carrito_model.dart';
+
 import 'package:tfg/providers/CarritoProvider.dart';
 
-import 'package:tfg/widgets/admin.dart';
-
-import 'package:tfg/widgets/articulosPromocion.dart';
-import 'package:tfg/widgets/carrito.dart';
+import 'package:tfg/widgets/screens/articulosPromocion/articulosPromocion.dart';
+import 'package:tfg/widgets/screens/carrito/carrito.dart';
 import 'package:tfg/widgets/components/IconWithCounter.dart';
-import 'package:tfg/widgets/filtrado.dart';
-import 'package:tfg/widgets/listaArticulos.dart';
-import 'package:tfg/widgets/perfil.dart';
+
+import 'package:tfg/widgets/screens/listaArticulos/listaArticulos.dart';
+import 'package:tfg/widgets/screens/perfil/perfil.dart';
 
 //TODO: Logica aparezca opcion de Admn segun usuario conectado
 class Home extends StatefulWidget {
@@ -54,14 +52,9 @@ class _HomeState extends State<Home> {
           carrito: (Provider.of<CarritoProvider>(context)),
           callback: updateCurrentIndex),
       Perfil(),
-      //Administrador()
-      //Filtrado(),
     ];
 
     return Scaffold(
-      /*appBar: AppBar(
-        title: Text("Mundo Móvil"),
-      ),*/
       body: SafeArea(
         child: IndexedStack(
           index: _selectedIndex,
@@ -87,9 +80,6 @@ class _HomeState extends State<Home> {
             label: "Promociones",
           ),
           BottomNavigationBarItem(
-            /*icon: Icon(
-                (Icons.shopping_cart),
-              ),*/
             icon: IconWithCounter(
               icon: Icons.shopping_cart,
               numOfItem: (Provider.of<CarritoProvider>(context)
@@ -108,8 +98,6 @@ class _HomeState extends State<Home> {
               (Icons.person),
             ),
             label: "Perfil",
-            //label: "Perfil",
-            //backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(

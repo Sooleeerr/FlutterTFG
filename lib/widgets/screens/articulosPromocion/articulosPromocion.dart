@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tfg/models/articulos_visitados_model.dart';
-import 'package:tfg/widgets/articulo.dart';
-import 'package:tfg/widgets/components/articulos_visitados.dart';
+import 'package:tfg/widgets/screens/listaArticulos/components/articulo.dart';
+import 'package:tfg/widgets/screens/articulosPromocion/components/articulos_visitados.dart';
 import 'package:tfg/widgets/components/image_tag.dart';
-import '../models/ArticuloModel.dart';
-import '../services/ApiService.dart';
+import '../../../models/ArticuloModel.dart';
+import '../../../services/ApiService.dart';
 
 class ListaArticulosPromocion extends StatefulWidget {
   const ListaArticulosPromocion({Key? key}) : super(key: key);
@@ -48,11 +48,11 @@ class _ListaArticulosPromocionState extends State<ListaArticulosPromocion> {
           )
         : Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               const Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   "Artículos recién visitados",
                   style: TextStyle(
@@ -68,25 +68,8 @@ class _ListaArticulosPromocionState extends State<ListaArticulosPromocion> {
                   articulosVisitados: _listaArticulosVisitadosModel!,
                 ),
               ),
-              /*Row(children: [
-                ImageTag(
-                  image: "assets/images/apple-logo.png",
-                  text: "Apple",
-                  press: () {},
-                ),
-                ImageTag(
-                  image: "assets/images/samsung-logo.png",
-                  text: "Samsung",
-                  press: () {},
-                ),
-                ImageTag(
-                  image: "assets/images/xiaomi-logo.png",
-                  text: "Xiaomi",
-                  press: () {},
-                ),
-              ]),*/
               const Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   "Nuestras Marcas",
                   style: TextStyle(
@@ -113,34 +96,8 @@ class _ListaArticulosPromocionState extends State<ListaArticulosPromocion> {
                   press: () {},
                 ),
               ]),
-              /*Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Container(
-                  height: 150,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        ...List.generate(
-                          _listaArticulosModel!.length,
-                          (index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(left: 2),
-                              child: Articulo(
-                                articulo: _listaArticulosModel![index],
-                                miniatura: true,
-                              ),
-                            );
-                          },
-                        ),
-                        const SizedBox(width: 20),
-                      ],
-                    ),
-                  ),
-                ),
-              ),*/
               const Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   "Artículos en oferta",
                   style: TextStyle(

@@ -2,13 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:tfg/models/ArticuloModel.dart';
-import 'package:tfg/widgets/detalleArticulo.dart';
+import 'package:tfg/widgets/screens/detalleArticulo/detalleArticulo.dart';
 import 'package:tfg/constants.dart';
 
 class Articulo extends StatelessWidget {
   final ArticuloModel articulo;
   final bool miniatura;
-  const Articulo({required this.articulo, required this.miniatura});
+  const Articulo({Key? key, required this.articulo, required this.miniatura})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +18,10 @@ class Articulo extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => DetalleArticulo(
-                    idArticulo: articulo.idArticulo!,
-                  )),
+            builder: (context) => DetalleArticulo(
+              idArticulo: articulo.idArticulo!,
+            ),
+          ),
         );
       },
       child: Container(

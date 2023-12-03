@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:tfg/constants.dart';
 import 'package:tfg/models/pedido_model.dart';
 import 'package:tfg/services/ApiService.dart';
-import 'package:tfg/widgets/articuloDetallePedido.dart';
+import 'package:tfg/widgets/screens/detallePedido/components/articuloDetallePedido.dart';
 
-class detallePedido extends StatefulWidget {
+class DetallePedido extends StatefulWidget {
   final String numPedido;
   final bool vieneCompra;
-  const detallePedido(
+  const DetallePedido(
       {Key? key, required this.numPedido, required this.vieneCompra})
       : super(key: key);
 
   @override
-  State<detallePedido> createState() => _detallePedidoState();
+  State<DetallePedido> createState() => _DetallePedidoState();
 }
 
-class _detallePedidoState extends State<detallePedido> {
+class _DetallePedidoState extends State<DetallePedido> {
   late PedidoModel detallePedido = PedidoModel();
   @override
   void initState() {
@@ -33,6 +33,7 @@ class _detallePedidoState extends State<detallePedido> {
   @override
   Widget build(BuildContext context) {
     return detallePedido.idPedido == null
+        // ignore: prefer_const_constructors
         ? Scaffold(
             backgroundColor: const Color(0xFFF5F6F9),
             body: const Center(
@@ -53,8 +54,9 @@ class _detallePedidoState extends State<detallePedido> {
                     if (widget.vieneCompra) {
                       int count = 0;
                       Navigator.of(context).popUntil((_) => count++ >= 2);
-                    } else
+                    } else {
                       Navigator.pop(context);
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     shape: const CircleBorder(),
@@ -75,12 +77,12 @@ class _detallePedidoState extends State<detallePedido> {
                 if (widget.vieneCompra)
                   Column(
                     children: [
-                      Text(
+                      const Text(
                         "Ya tenemos tu pedido en nuestras manos",
                         style: TextStyle(color: Colors.black),
                       ),
                       Image.asset("assets/images/success.png", scale: 8),
-                      SizedBox(
+                      const SizedBox(
                         height: 40,
                       )
                     ],
@@ -138,7 +140,7 @@ class _detallePedidoState extends State<detallePedido> {
                                     TextSpan(
                                       text:
                                           "${dateFormatter.format(DateTime.parse(detallePedido.fechaPedido!))} ",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 16, color: Colors.black),
                                     ),
                                   ],
@@ -153,7 +155,7 @@ class _detallePedidoState extends State<detallePedido> {
                                     TextSpan(
                                       text:
                                           "${numberFormatter.format(detallePedido.precioPedido)} €",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 16, color: Colors.black),
                                     ),
                                   ],

@@ -10,7 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:tfg/main.dart';
 
-import '../lib/widgets/home.dart';
+import '../lib/widgets/screens/home/home.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

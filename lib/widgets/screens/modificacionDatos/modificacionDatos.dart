@@ -1,16 +1,10 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:tfg/constants.dart';
 import 'package:tfg/models/respuesta.dart';
 import 'package:tfg/services/ApiService.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
-
-//TODO Diseño
-//TODO Integrar API Listado Pedidos
-//TODO navegar a pantalla Detalle Pedidos con parámetros
+import 'package:tfg/widgets/components/appBarAtras.dart';
 
 class ModificacionDatos extends StatefulWidget {
   const ModificacionDatos({Key? key}) : super(key: key);
@@ -74,8 +68,6 @@ class _ModificacionDatosState extends State<ModificacionDatos> {
       content: Text(textoSnackBar),
     );
 
-    // Find the ScaffoldMessenger in the widget tree
-    // and use it to show a SnackBar.
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
@@ -83,78 +75,56 @@ class _ModificacionDatosState extends State<ModificacionDatos> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F6F9),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            style: ElevatedButton.styleFrom(
-              shape: const CircleBorder(),
-              padding: EdgeInsets.zero,
-              elevation: 0,
-              backgroundColor: Colors.white,
-            ),
-            child: const Icon(
-              Icons.arrow_back_ios_new,
-              color: Colors.black,
-              size: 20,
-            ),
-          ),
-        ),
-      ),
+      appBar: AppBarAtras(),
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
               Container(
                 alignment: Alignment.centerLeft,
-                child: Text(
+                child: const Text(
                   "Tus datos",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(height: 40.0),
+              const SizedBox(height: 40.0),
               TextField(
-                decoration: InputDecoration(labelText: "Nombre"),
+                decoration: const InputDecoration(labelText: "Nombre"),
                 controller: _controllerNombre,
                 onChanged: (texto) {
                   _nombre = texto;
                 },
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               TextField(
-                decoration: InputDecoration(labelText: "Correo"),
+                decoration: const InputDecoration(labelText: "Correo"),
                 enabled: false,
                 controller: _controllerEmail,
                 onChanged: (texto) {
                   _email = texto;
                 },
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               TextField(
-                decoration: InputDecoration(labelText: "Contraseña"),
+                decoration: const InputDecoration(labelText: "Contraseña"),
                 controller: _controllerPassword,
                 obscureText: true,
                 onChanged: (texto) {
                   _password = texto;
                 },
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               ElevatedButton(
                 onPressed: () {
                   _modificar();
                 },
-                child: Text(
+                child: const Text(
                   'Modificar',
                   style: TextStyle(color: Colors.black),
                 ),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
@@ -162,7 +132,7 @@ class _ModificacionDatosState extends State<ModificacionDatos> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kSecondaryColor,
                 ),
-                child: Text(
+                child: const Text(
                   'Cancelar',
                   style: TextStyle(color: Colors.black),
                 ),

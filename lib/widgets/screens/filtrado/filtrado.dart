@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 
@@ -7,8 +9,8 @@ import 'package:tfg/constants.dart';
 import 'package:tfg/models/filtro_model.dart';
 import 'package:tfg/services/ApiService.dart';
 import 'package:tfg/widgets/components/TopRoundedContainer.dart';
+import 'package:tfg/widgets/components/appBarAtras.dart';
 
-//TODO Controlar 0 articulos
 class Filtrado extends StatefulWidget {
   final Function(FiltroModel) callback;
   final FiltroModel filtroModel;
@@ -26,12 +28,11 @@ class _FiltradoState extends State<Filtrado> {
   var itemsModelo = [];
   var itemsAlmacenamiento = [];
   var itemsColor = [];
-  var itemsPrecio = ["hasta 125€", "entre 125€ y 300€", "más de 300€"];
   var numeroArticulos = 0;
 
   final double _min = 0;
   final double _max = 1000;
-  SfRangeValues _valuesPrecio = const SfRangeValues(100.0, 300.0);
+  SfRangeValues _valuesPrecio = const SfRangeValues(0.0, 1000.0);
 
   List<String> selectedValueMarca = [];
   List<String> selectedValueModelo = [];
@@ -127,31 +128,9 @@ class _FiltradoState extends State<Filtrado> {
             extendBody: false,
             extendBodyBehindAppBar: false,
             backgroundColor: const Color(0xFFF5F6F9),
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              leading: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shape: const CircleBorder(),
-                    padding: EdgeInsets.zero,
-                    elevation: 0,
-                    backgroundColor: Colors.white,
-                  ),
-                  child: const Icon(
-                    Icons.arrow_back_ios_new,
-                    color: Colors.black,
-                    size: 20,
-                  ),
-                ),
-              ),
-            ),
+            appBar: const AppBarAtras(),
             body: Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -223,7 +202,6 @@ class _FiltradoState extends State<Filtrado> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    //TODO Introducir slider
                     SfRangeSliderTheme(
                       data: SfRangeSliderThemeData(
                         activeTrackColor: kPrimaryColor,
@@ -236,14 +214,14 @@ class _FiltradoState extends State<Filtrado> {
                         values: _valuesPrecio,
                         interval: 200,
                         enableTooltip: true,
-                        tooltipShape: SfPaddleTooltipShape(),
+                        tooltipShape: const SfPaddleTooltipShape(),
                         showLabels: true,
                         onChanged: (SfRangeValues value) {
                           setSelectedValuePrecio(value);
                         },
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     const Text(
@@ -311,7 +289,7 @@ class _FiltradoState extends State<Filtrado> {
               ),
             ),
             bottomNavigationBar: TopRoundedContainer(
-              color: Color.fromARGB(255, 255, 255, 255),
+              color: const Color.fromARGB(255, 255, 255, 255),
               child: SafeArea(
                 child: Padding(
                   padding:

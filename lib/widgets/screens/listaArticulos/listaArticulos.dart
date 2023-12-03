@@ -3,15 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:tfg/constants.dart';
 import 'package:tfg/models/filtro_model.dart';
 
-import 'package:tfg/widgets/articulo.dart';
+import 'package:tfg/widgets/screens/listaArticulos/components/articulo.dart';
 
-import 'package:tfg/widgets/filtrado.dart';
+import 'package:tfg/widgets/screens/filtrado/filtrado.dart';
 
-import 'package:tfg/widgets/ordenacion.dart';
-import '../models/ArticuloModel.dart';
-import '../services/ApiService.dart';
-
-//TODO: OPCIONAL Diseño Articulos Visitados, promos
+import 'package:tfg/widgets/screens/ordenacion/ordenacion.dart';
+import '../../../models/ArticuloModel.dart';
+import '../../../services/ApiService.dart';
 
 class ListaArticulos extends StatefulWidget {
   const ListaArticulos({Key? key}) : super(key: key);
@@ -60,8 +58,6 @@ class _ListaArticulosState extends State<ListaArticulos> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              //Expanded(child: SearchField()),
-              //SizedBox(width: 100),
               Padding(
                 padding: const EdgeInsets.only(
                   top: 4,
@@ -71,20 +67,21 @@ class _ListaArticulosState extends State<ListaArticulos> {
                   scale: 1.75,
                 ),
               ),
-              Text("Mundo Móvil"),
-              SizedBox(width: 120),
+              const Text("Mundo Móvil"),
+              const SizedBox(width: 120),
               IconButton(
                 iconSize: 22,
-                icon: Icon(Icons.swap_vert),
+                icon: const Icon(Icons.swap_vert),
                 color: ordenacionAplicada != 0 ? kPrimaryColor : Colors.black,
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Ordenacion(
-                              callback: _ordenar,
-                              filtroModel: _filtroModel,
-                            )),
+                      builder: (context) => Ordenacion(
+                        callback: _ordenar,
+                        filtroModel: _filtroModel,
+                      ),
+                    ),
                   );
                 },
               ),
@@ -97,10 +94,11 @@ class _ListaArticulosState extends State<ListaArticulos> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Filtrado(
-                              callback: _filtrar,
-                              filtroModel: _filtroModel,
-                            )),
+                      builder: (context) => Filtrado(
+                        callback: _filtrar,
+                        filtroModel: _filtroModel,
+                      ),
+                    ),
                   );
                 },
               ),

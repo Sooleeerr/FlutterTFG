@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tfg/constants.dart';
 import 'package:tfg/models/pedido_model.dart';
-import 'package:tfg/widgets/detalleArticulo.dart';
+import 'package:tfg/widgets/screens/detalleArticulo/detalleArticulo.dart';
 
 class ArticuloDetallePedido extends StatelessWidget {
   final ListaArticulosPedido articuloPedido;
