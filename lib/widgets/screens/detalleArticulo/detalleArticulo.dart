@@ -186,6 +186,37 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
                                     ),
                                   ],
                                 ),
+                                if (articulo.stock! < 10 && articulo.stock! > 0)
+                                  Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(
+                                        "Últimas unidades. Sólo quedan " +
+                                            articulo.stock.toString(),
+                                        style: TextStyle(
+                                          color: Colors.red[600],
+                                          fontSize: 14.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                if (articulo.stock! == 0)
+                                  Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(
+                                        "No hay stock",
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 14.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                               ]),
                             ),
                           ),
@@ -276,12 +307,17 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      _anadeCarrito();
-                    },
-                    child: const Text("Añade al carrito"),
-                  ),
+                  child: (articulo.stock! > 0)
+                      ? ElevatedButton(
+                          onPressed: () {
+                            _anadeCarrito();
+                          },
+                          child: const Text("Añade al carrito"),
+                        )
+                      : ElevatedButton(
+                          onPressed: null,
+                          child: const Text("No hay stock"),
+                        ),
                 ),
               ),
             ),

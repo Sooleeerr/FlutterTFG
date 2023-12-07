@@ -111,6 +111,7 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 30),
             TextField(
               decoration: const InputDecoration(labelText: "Correo"),
+              keyboardType: TextInputType.emailAddress,
               onChanged: (texto) {
                 usuarioTextField = texto;
               },

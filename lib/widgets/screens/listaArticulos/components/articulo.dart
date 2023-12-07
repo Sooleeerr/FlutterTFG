@@ -79,7 +79,23 @@ class Articulo extends StatelessWidget {
                     ),
                   ),
                 ],
-              )
+              ),
+              if (articulo.stock! < 10 && articulo.stock! > 0)
+                Text(
+                  "Últimas unidades",
+                  style: TextStyle(
+                    color: Colors.red[600],
+                    fontSize: (!miniatura) ? 14.0 : 10.0,
+                  ),
+                ),
+              if (articulo.stock! == 0)
+                Text(
+                  "No hay stock",
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: (!miniatura) ? 14.0 : 10.0,
+                  ),
+                )
             ],
           ),
         ),
