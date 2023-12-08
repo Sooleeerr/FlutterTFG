@@ -26,6 +26,7 @@ class Carrito extends StatefulWidget {
 
 class _CarritoState extends State<Carrito> {
   String _usuario = "";
+  String _token = "";
   late SharedPreferences _prefs;
   late CarritoModel carritoModel;
 
@@ -39,6 +40,7 @@ class _CarritoState extends State<Carrito> {
   void _getCarrito() async {
     _prefs = await SharedPreferences.getInstance();
     _usuario = _prefs.getString('correo_usuario') ?? '';
+    _token = _prefs.getString('token_usuario') ?? '';
 
     widget.carrito.actualizarCarrito(await ApiService().getCarrito(_usuario));
     Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
@@ -52,7 +54,7 @@ class _CarritoState extends State<Carrito> {
 
   Future<String?> _aceptarPedido() async {
     RespuestaCreacionPedidoModel? registroOK =
-        await ApiService().realizarPedido(_usuario);
+        await ApiService().realizarPedido(_usuario, _token);
     if (registroOK != null) {
       _getCarrito();
       // ignore: avoid_single_cascade_in_expression_statements

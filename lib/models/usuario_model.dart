@@ -13,6 +13,8 @@ class UsuarioModel {
   String emailUsuario;
   String idUsuario;
   String nombreUsuario;
+  bool admin;
+  String token;
 
   UsuarioModel({
     required this.id,
@@ -20,6 +22,8 @@ class UsuarioModel {
     required this.emailUsuario,
     required this.idUsuario,
     required this.nombreUsuario,
+    required this.admin,
+    required this.token,
   });
 
   factory UsuarioModel.fromJson(Map<String, dynamic> json) => UsuarioModel(
@@ -28,6 +32,8 @@ class UsuarioModel {
         emailUsuario: json["email_usuario"],
         idUsuario: json["id_usuario"],
         nombreUsuario: json["nombre_usuario"],
+        admin: json["admin"],
+        token: json["token"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -36,5 +42,7 @@ class UsuarioModel {
         "email_usuario": emailUsuario,
         "id_usuario": idUsuario,
         "nombre_usuario": nombreUsuario,
+        "admin": admin,
+        "token": token,
       };
 }

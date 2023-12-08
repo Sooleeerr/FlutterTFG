@@ -74,6 +74,8 @@ class _LoginPageState extends State<LoginPage> {
       prefs.setString('nombre_usuario', _usuarioModel!.nombreUsuario);
       prefs.setString('correo_usuario', _usuarioModel!.emailUsuario);
       prefs.setString('password_usuario', _usuarioModel!.contraseaUsuario);
+      prefs.setBool('admin_usuario', _usuarioModel!.admin);
+      prefs.setString('token_usuario', _usuarioModel!.token);
       _inicializaProviders();
       Navigator.push(
         context,

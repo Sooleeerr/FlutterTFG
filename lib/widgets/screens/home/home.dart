@@ -2,10 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:tfg/constants.dart';
 
 import 'package:tfg/providers/CarritoProvider.dart';
+import 'package:tfg/widgets/screens/admin/admin.dart';
 
 import 'package:tfg/widgets/screens/articulosPromocion/articulosPromocion.dart';
 import 'package:tfg/widgets/screens/carrito/carrito.dart';
@@ -25,10 +27,18 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
   int numItems = 0;
+  late SharedPreferences _prefs;
+  bool _adminUsuario = false;
 
   @override
   void initState() {
     super.initState();
+    _recuperaDatosUsuario();
+  }
+
+  void _recuperaDatosUsuario() async {
+    _prefs = await SharedPreferences.getInstance();
+    _adminUsuario = _prefs.getBool('admin_usuario') ?? false;
   }
 
   void _onItemTapped(int index) {
@@ -46,12 +56,13 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     List<Widget> _pages = <Widget>[
-      ListaArticulos(),
+      ListaArticulos(key: UniqueKey()),
       ListaArticulosPromocion(key: UniqueKey()),
       Carrito(
           carrito: (Provider.of<CarritoProvider>(context)),
           callback: updateCurrentIndex),
       Perfil(),
+      Administrador(),
     ];
 
     return Scaffold(
@@ -99,12 +110,13 @@ class _HomeState extends State<Home> {
             ),
             label: "Perfil",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              (Icons.admin_panel_settings),
+          if (_adminUsuario)
+            BottomNavigationBarItem(
+              icon: Icon(
+                (Icons.admin_panel_settings),
+              ),
+              label: "Administrador",
             ),
-            label: "Administrador",
-          ),
         ],
       ),
     );

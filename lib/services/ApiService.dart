@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+//import 'dart:html';
 
 import 'package:http/http.dart' as http;
 import 'package:tfg/models/articulos_relacionados_model.dart';
@@ -33,17 +34,85 @@ class Constants {
   static String filtradoOpcionesEndpoint = "/filtradoOpciones";
   static String contarListaArticulosEndpoint = "/contarListaArticulos";
   static String listaArticulosVisitadosEndpoint = "/articulosVisitados";
+  static String nuevoArticuloEndpoint = "/nuevoArticulo";
+
+  static String adminArticuloEndpoint = "/adminArticulo";
 }
 
 class ApiService {
-  Future<RespuestaCreacionPedidoModel?> realizarPedido(idUsuario) async {
+  Map<String, String>? _getHeader(String token) {
+    Map<String, String> header = {
+      'Authorization':
+          'Bearer $token', // Agrega el token JWT al encabezado 'Authorization'
+      'Content-Type':
+          'application/json', // El tipo de contenido de tu solicitud
+    };
+    return header;
+  }
+
+  Future<Respuesta?> nuevoArticulo(ArticuloModel articulo) async {
+    try {
+      String json = singleArticuloModelToJson(articulo);
+      /*var url = Uri.parse(Constants.baseUrl +
+          Constants.nuevoArticuloEndpoint +
+          "/?idArticulo=" +
+          articulo.idArticulo! +
+          "&nombreArticulo=" +
+          articulo.nombreArticulo! +
+          "&precioArticulo=" +
+          articulo.precioArticulo!.toString() +
+          "&marcaArticulo=" +
+          articulo.marcaArticulo! +
+          "&modeloArticulo=" +
+          articulo.modeloArticulo! +
+          "&colorArticulo=" +
+          articulo.colorArticulo! +
+          "&almacenamientoArticulo=" +
+          articulo.almacenamientoArticulo! +
+          "&fotoArticulo=" +
+          articulo.fotoArticulo! +
+          "&articuloPromocion=" +
+          articulo.articuloPromocion! +
+          "&descripcionArticulo=" +
+          articulo.descripcionArticulo! +
+          "&precioArticuloAnterior=" +
+          articulo.precioArticuloAnterior!.toString() +
+          "&stockArticulo=" +
+          articulo.stock!.toString());*/
+
+      var url = Uri.parse(Constants.baseUrl + Constants.adminArticuloEndpoint);
+      log(json);
+
+      //var response = await http.post(url);
+      var response = await http.post(url,
+          headers: {
+            'Content-Type':
+                'application/json', // Especifica el tipo de contenido como JSON
+          },
+          body: json);
+
+      Respuesta _respuesta = Respuesta();
+      if (response.statusCode == 200) {
+        _respuesta.respuestaCorrecta = true;
+        _respuesta.mensajeRespuesta = "Articulo añadido/modificado";
+        return _respuesta;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+    return null;
+  }
+
+  Future<RespuestaCreacionPedidoModel?> realizarPedido(idUsuario, token) async {
     try {
       var url = Uri.parse(Constants.baseUrl +
           Constants.realizarPedidoEndpoint +
           "/?idUsuario=" +
           idUsuario);
 
-      var response = await http.post(url);
+      var response = await http.post(url, headers: _getHeader(token));
 
       if (response.statusCode == 200) {
         RespuestaCreacionPedidoModel _respuesta =
@@ -58,7 +127,7 @@ class ApiService {
     return null;
   }
 
-  Future<Respuesta> modificarUsuario(nombre, email, password) async {
+  Future<Respuesta> modificarUsuario(nombre, email, password, token) async {
     Respuesta respuesta = Respuesta();
     try {
       var url = Uri.parse(Constants.baseUrl +
@@ -70,7 +139,7 @@ class ApiService {
           "&contrasenaUsuario=" +
           password);
       log(url.toString());
-      var response = await http.put(url);
+      var response = await http.put(url, headers: _getHeader(token));
       log(response.toString());
       if (response.statusCode == 200) {
         respuesta.respuestaCorrecta = true;
@@ -130,6 +199,7 @@ class ApiService {
       var response = await http.get(url);
       if (response.statusCode == 200) {
         UsuarioModel _usuario = usuarioModelFromJson(response.body);
+
         return _usuario;
       } else {
         return null;
