@@ -23,6 +23,12 @@ const headingStyle = TextStyle(
   height: 1.5,
 );
 
+const List<String> estadoPedido = [
+  "Registrado",
+  "En preparación",
+  "Enviado",
+  "Entregado"
+];
 const defaultDuration = Duration(milliseconds: 250);
 
 // Form Error

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tfg/widgets/screens/admin/mantenimientoArticulos.dart';
+import 'package:tfg/widgets/screens/admin/mantenimientoPedidos.dart';
 import 'package:tfg/widgets/screens/perfil/components/menuPerfil.dart';
 
 class Administrador extends StatelessWidget {
@@ -17,12 +18,23 @@ class Administrador extends StatelessWidget {
             const SizedBox(height: 40),
             MenuPerfil(
               text: "Mantenimiento artículos",
-              icon: Icons.person,
+              icon: Icons.article,
               press: () => {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => MantenimientoArticulos()),
+                )
+              },
+            ),
+            MenuPerfil(
+              text: "Mantenimiento pedidos",
+              icon: Icons.list_alt,
+              press: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MantenimientoPedidos()),
                 )
               },
             ),

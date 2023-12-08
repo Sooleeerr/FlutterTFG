@@ -16,7 +16,6 @@ import 'package:tfg/widgets/components/IconWithCounter.dart';
 import 'package:tfg/widgets/screens/listaArticulos/listaArticulos.dart';
 import 'package:tfg/widgets/screens/perfil/perfil.dart';
 
-//TODO: Logica aparezca opcion de Admn segun usuario conectado
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 

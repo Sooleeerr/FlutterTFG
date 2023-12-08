@@ -6,6 +6,8 @@ import 'package:tfg/providers/CarritoProvider.dart';
 
 import 'package:tfg/services/ApiService.dart';
 import 'package:tfg/theme.dart';
+import 'package:tfg/widgets/components/emailTextFormField.dart';
+import 'package:tfg/widgets/components/passwordlTextFormField.dart';
 import 'package:tfg/widgets/screens/registro/registro.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -41,6 +43,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+
   String usuarioTextField = "";
   String passwordTextField = "";
 
@@ -95,66 +99,68 @@ class _LoginPageState extends State<LoginPage> {
     return SafeArea(
       child: Container(
         padding: const EdgeInsets.all(40),
-        child: Column(
-          children: [
-            const SizedBox(height: 60),
-            const Text(
-              "Bienvenido a Mundo Móvil",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              const SizedBox(height: 60),
+              const Text(
+                "Bienvenido a Mundo Móvil",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            const Text(
-              "Introduce tu correo y tu contraseña",
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 30),
-            TextField(
-              decoration: const InputDecoration(labelText: "Correo"),
-              keyboardType: TextInputType.emailAddress,
-              onChanged: (texto) {
-                usuarioTextField = texto;
-              },
-            ),
-            const SizedBox(height: 20.0),
-            TextField(
-              decoration: const InputDecoration(labelText: "Contraseña"),
-              obscureText: true,
-              onChanged: (texto) {
-                passwordTextField = texto;
-              },
-            ),
-            const SizedBox(height: 20.0),
-            ElevatedButton(
-              onPressed: () {
-                _acceder();
-              },
-              child: const Text('Acceder'),
-            ),
-            const SizedBox(height: 10.0),
-            const SizedBox(height: 10.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  "¿Aún no tienes cuenta?   ",
-                  style: TextStyle(fontSize: 16),
-                ),
-                GestureDetector(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Registro()),
+              const Text(
+                "Introduce tu correo y tu contraseña",
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 30),
+              EmailTextFormField(
+                myOnchanged: (texto) {
+                  usuarioTextField = texto;
+                },
+              ),
+              const SizedBox(height: 20.0),
+              PasswordTextFormField(
+                myOnchanged: (texto) {
+                  passwordTextField = texto;
+                },
+              ),
+              const SizedBox(height: 20.0),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
+                    _acceder();
+                  }
+                },
+                child: const Text('Acceder'),
+              ),
+              const SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "¿Aún no tienes cuenta?   ",
+                    style: TextStyle(fontSize: 16),
                   ),
-                  child: const Text(
-                    "Registrate",
-                    style: TextStyle(fontSize: 16, color: kPrimaryColor),
+                  GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Registro()),
+                    ),
+                    child: const Text(
+                      "Registrate",
+                      style: TextStyle(fontSize: 16, color: kPrimaryColor),
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

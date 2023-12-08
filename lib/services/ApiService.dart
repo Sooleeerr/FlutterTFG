@@ -31,12 +31,13 @@ class Constants {
   static String realizarPedidoEndpoint = "/realizarPedido";
   static String detallePedidoEndpoint = "/detallePedido";
   static String listaPedidosEndpoint = "/listaPedidos";
+  static String mantenimientoPedidosEndpoint = "/listaPedidosAdmin";
   static String filtradoOpcionesEndpoint = "/filtradoOpciones";
   static String contarListaArticulosEndpoint = "/contarListaArticulos";
   static String listaArticulosVisitadosEndpoint = "/articulosVisitados";
-  static String nuevoArticuloEndpoint = "/nuevoArticulo";
 
   static String adminArticuloEndpoint = "/adminArticulo";
+  static String modificaEstadoPedidoEndpoint = "/modificaEstadoPedido";
 }
 
 class ApiService {
@@ -53,32 +54,6 @@ class ApiService {
   Future<Respuesta?> nuevoArticulo(ArticuloModel articulo) async {
     try {
       String json = singleArticuloModelToJson(articulo);
-      /*var url = Uri.parse(Constants.baseUrl +
-          Constants.nuevoArticuloEndpoint +
-          "/?idArticulo=" +
-          articulo.idArticulo! +
-          "&nombreArticulo=" +
-          articulo.nombreArticulo! +
-          "&precioArticulo=" +
-          articulo.precioArticulo!.toString() +
-          "&marcaArticulo=" +
-          articulo.marcaArticulo! +
-          "&modeloArticulo=" +
-          articulo.modeloArticulo! +
-          "&colorArticulo=" +
-          articulo.colorArticulo! +
-          "&almacenamientoArticulo=" +
-          articulo.almacenamientoArticulo! +
-          "&fotoArticulo=" +
-          articulo.fotoArticulo! +
-          "&articuloPromocion=" +
-          articulo.articuloPromocion! +
-          "&descripcionArticulo=" +
-          articulo.descripcionArticulo! +
-          "&precioArticuloAnterior=" +
-          articulo.precioArticuloAnterior!.toString() +
-          "&stockArticulo=" +
-          articulo.stock!.toString());*/
 
       var url = Uri.parse(Constants.baseUrl + Constants.adminArticuloEndpoint);
       log(json);
@@ -477,5 +452,49 @@ class ApiService {
       return [];
     }
     return [];
+  }
+
+  Future<List<ListaPedidosModel>?> getMantenimientoPedidos() async {
+    try {
+      var url =
+          Uri.parse(Constants.baseUrl + Constants.mantenimientoPedidosEndpoint);
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        List<ListaPedidosModel> pedido =
+            listaPedidosModelFromJson(response.body);
+        return pedido;
+      }
+    } catch (e) {
+      log(e.toString());
+      return [];
+    }
+    return [];
+  }
+
+  Future<Respuesta> modificarEstadoPedido(idPedido, estadoPedido) async {
+    Respuesta respuesta = Respuesta();
+    try {
+      var url = Uri.parse(Constants.baseUrl +
+          Constants.modificaEstadoPedidoEndpoint +
+          "/?estadoPedido=" +
+          estadoPedido +
+          "&idPedido=" +
+          idPedido);
+      log(url.toString());
+      var response = await http.put(url);
+      log(response.toString());
+      if (response.statusCode == 200) {
+        respuesta.respuestaCorrecta = true;
+        respuesta.mensajeRespuesta = response.body;
+        return Future.value(respuesta);
+      } else {
+        respuesta.respuestaCorrecta = false;
+        respuesta.mensajeRespuesta = response.body;
+        return Future.value(respuesta);
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+    return Future.value(respuesta);
   }
 }

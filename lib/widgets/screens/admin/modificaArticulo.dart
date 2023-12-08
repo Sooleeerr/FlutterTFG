@@ -59,7 +59,6 @@ class _ModificaArticuloState extends State<ModificaArticulo> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     modoNuevo = (widget.articulo == null);
     _controllerIdArticulo.text = widget.idArticulo!;

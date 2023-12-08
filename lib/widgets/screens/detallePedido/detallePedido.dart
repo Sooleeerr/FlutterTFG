@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:tfg/constants.dart';
 import 'package:tfg/models/pedido_model.dart';
 import 'package:tfg/services/ApiService.dart';
@@ -94,6 +95,25 @@ class _DetallePedidoState extends State<DetallePedido> {
                 Text(
                   "Nº de pedido: ${detallePedido.idPedido}",
                   style: Theme.of(context).textTheme.bodySmall,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    StepProgressIndicator(
+                      totalSteps: 4,
+                      currentStep: int.parse(detallePedido.estadoPedido!),
+                      selectedColor: Colors.green,
+                      unselectedColor: Colors.grey,
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(estadoPedido[
+                        int.parse(detallePedido.estadoPedido!) - 1]),
+                  ],
                 ),
                 Expanded(
                   child: ListView.builder(

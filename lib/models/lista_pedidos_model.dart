@@ -14,6 +14,7 @@ class ListaPedidosModel {
   List<ListaArticulos>? listaArticulos;
   int? precioPedido;
   String? fechaPedido;
+  String? estadoPedido;
 
   ListaPedidosModel(
       {this.sId,
@@ -21,7 +22,8 @@ class ListaPedidosModel {
       this.idUsuario,
       this.listaArticulos,
       this.precioPedido,
-      this.fechaPedido});
+      this.fechaPedido,
+      this.estadoPedido});
 
   ListaPedidosModel.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -35,6 +37,7 @@ class ListaPedidosModel {
     }
     precioPedido = json['precio_pedido'];
     fechaPedido = json['fecha_pedido'];
+    estadoPedido = json['estado_pedido'];
   }
 
   Map<String, dynamic> toJson() {
@@ -48,6 +51,7 @@ class ListaPedidosModel {
     }
     data['precio_pedido'] = this.precioPedido;
     data['fecha_pedido'] = this.fechaPedido;
+    data['estado_pedido'] = this.estadoPedido;
     return data;
   }
 }
