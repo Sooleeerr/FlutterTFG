@@ -33,11 +33,16 @@ class AppTheme {
         ),
       ),
       inputDecorationTheme: const InputDecorationTheme(
-        floatingLabelBehavior: FloatingLabelBehavior.always,
+        floatingLabelBehavior: FloatingLabelBehavior.auto,
+        //labelStyle: TextStyle(color: kSecondaryColor),
+        //focusColor: kPrimaryColor,
         contentPadding: EdgeInsets.symmetric(horizontal: 42, vertical: 20),
         enabledBorder: outlineInputBorder,
         focusedBorder: outlineInputBorder,
         border: outlineInputBorder,
+        suffixStyle: TextStyle(
+          color: kSecondaryColor, // Color del icono
+        ),
       ),
       visualDensity: VisualDensity.adaptivePlatformDensity,
       elevatedButtonTheme: ElevatedButtonThemeData(

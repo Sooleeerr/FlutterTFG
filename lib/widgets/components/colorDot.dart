@@ -13,6 +13,9 @@ class ColorDot extends StatelessWidget {
     "Azul": Colors.blueAccent,
     "Plata": const Color.fromARGB(255, 220, 215, 215),
     "Rojo": Colors.red,
+    "Naranja": Colors.orange,
+    "Verde": Color.fromARGB(255, 143, 199, 145),
+    "Blanco": Colors.white,
   };
   @override
   Widget build(BuildContext context) {
