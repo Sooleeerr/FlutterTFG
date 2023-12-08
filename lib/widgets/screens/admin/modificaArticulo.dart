@@ -6,6 +6,7 @@ import 'package:tfg/models/respuesta.dart';
 import 'package:tfg/services/ApiService.dart';
 import 'package:tfg/widgets/components/appBarAtras.dart';
 
+//TODO Meter borrado de articulo
 class ModificaArticulo extends StatefulWidget {
   final ArticuloModel? articulo;
   final String? idArticulo;

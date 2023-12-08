@@ -10,12 +10,12 @@ import 'package:tfg/models/respuesta.dart';
 import 'package:tfg/providers/CarritoProvider.dart';
 import 'package:tfg/services/ApiService.dart';
 import 'package:tfg/widgets/components/appBarAtras.dart';
+import 'package:tfg/widgets/components/colorDot.dart';
 import 'package:tfg/widgets/screens/listaArticulos/components/articulo.dart';
 import 'package:tfg/widgets/components/RoundedContainer.dart';
 import 'package:tfg/widgets/components/TopRoundedContainer.dart';
 
 import 'package:tfg/models/ArticuloModel.dart';
-//TODO: OPCIONAL Color
 
 class DetalleArticulo extends StatefulWidget {
   final String idArticulo;
@@ -240,7 +240,7 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
                           cells: [
                             DataCell(Text(articulo.marcaArticulo!)),
                             DataCell(Text(articulo.modeloArticulo!)),
-                            DataCell(Text(articulo.colorArticulo!)),
+                            DataCell(ColorDot(color: articulo.colorArticulo!)),
                             DataCell(Text(articulo.almacenamientoArticulo!)),
                           ],
                         ),
