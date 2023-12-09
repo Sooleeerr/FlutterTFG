@@ -71,17 +71,17 @@ class DetalleListaPedidos extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  Text(estadoPedido[
+                      int.parse(listaPedidosModel.estadoPedido!) - 1]),
+                  const SizedBox(
+                    width: 20,
+                  ),
                   StepProgressIndicator(
                     totalSteps: 4,
                     currentStep: int.parse(listaPedidosModel.estadoPedido!),
                     selectedColor: Colors.green,
                     unselectedColor: Colors.grey,
                   ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Text(estadoPedido[
-                      int.parse(listaPedidosModel.estadoPedido!) - 1]),
                 ],
               ),
             ],

@@ -5,6 +5,7 @@ import 'package:tfg/services/ApiService.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tfg/widgets/components/appBarAtras.dart';
+import 'package:tfg/widgets/components/passwordlTextFormField.dart';
 
 class ModificacionDatos extends StatefulWidget {
   const ModificacionDatos({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class _ModificacionDatosState extends State<ModificacionDatos> {
   String _email = "";
   String _password = "";
   String _token = "";
+  final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _controllerNombre = TextEditingController();
   final TextEditingController _controllerEmail = TextEditingController();
@@ -81,68 +83,92 @@ class _ModificacionDatosState extends State<ModificacionDatos> {
       backgroundColor: const Color(0xFFF5F6F9),
       appBar: AppBarAtras(),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: const Text(
-                    "Tus datos",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: const Text(
+                      "Tus datos",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 40.0),
-                TextField(
-                  decoration: const InputDecoration(labelText: "Nombre"),
-                  controller: _controllerNombre,
-                  onChanged: (texto) {
-                    _nombre = texto;
-                  },
-                ),
-                const SizedBox(height: 20.0),
-                TextField(
-                  decoration: const InputDecoration(labelText: "Correo"),
-                  enabled: false,
-                  controller: _controllerEmail,
-                  onChanged: (texto) {
-                    _email = texto;
-                  },
-                ),
-                const SizedBox(height: 20.0),
-                TextField(
-                  decoration: const InputDecoration(labelText: "Contraseña"),
-                  controller: _controllerPassword,
-                  obscureText: true,
-                  onChanged: (texto) {
-                    _password = texto;
-                  },
-                ),
-                const SizedBox(height: 20.0),
-                ElevatedButton(
-                  onPressed: () {
-                    _modificar();
-                  },
-                  child: const Text(
-                    'Modificar',
-                    style: TextStyle(color: Colors.black),
+                  const SizedBox(height: 40.0),
+                  TextFormField(
+                    decoration: const InputDecoration(labelText: "Nombre"),
+                    controller: _controllerNombre,
+                    onChanged: (texto) {
+                      _nombre = texto;
+                    },
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Este campo es obligatorio';
+                      }
+                      return null;
+                    },
                   ),
-                ),
-                const SizedBox(height: 20.0),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: kSecondaryColor,
+                  const SizedBox(height: 20.0),
+                  TextFormField(
+                    decoration: const InputDecoration(labelText: "Correo"),
+                    enabled: false,
+                    controller: _controllerEmail,
+                    onChanged: (texto) {
+                      _email = texto;
+                    },
                   ),
-                  child: const Text(
-                    'Cancelar',
-                    style: TextStyle(color: Colors.black),
+                  const SizedBox(height: 20.0),
+                  TextFormField(
+                    controller: _controllerPassword,
+                    obscureText: true,
+                    onChanged: (texto) {
+                      _password = texto;
+                    },
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    decoration: const InputDecoration(
+                      labelText: "Contraseña",
+                      hintStyle: TextStyle(color: Colors.grey),
+                      floatingLabelBehavior: FloatingLabelBehavior.auto,
+                      suffixIcon: Icon(Icons.lock),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Este campo es obligatorio';
+                      } else if (value.length < 8) {
+                        return 'Longitud mínima de contraseña: 8';
+                      }
+                      return null;
+                    },
                   ),
-                ),
-              ],
+                  const SizedBox(height: 20.0),
+                  ElevatedButton(
+                    onPressed: () {
+                      _modificar();
+                    },
+                    child: const Text(
+                      'Modificar',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                  const SizedBox(height: 20.0),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: kSecondaryColor,
+                    ),
+                    child: const Text(
+                      'Cancelar',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

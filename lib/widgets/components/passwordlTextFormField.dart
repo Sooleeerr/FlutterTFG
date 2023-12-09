@@ -21,7 +21,7 @@ class PasswordTextFormField extends StatelessWidget {
         if (value!.isEmpty) {
           return 'Este campo es obligatorio';
         } else if (value.length < 8) {
-          return 'Longitug mínima de contraseña: 8';
+          return 'Longitud mínima de contraseña: 8';
         }
         return null;
       },

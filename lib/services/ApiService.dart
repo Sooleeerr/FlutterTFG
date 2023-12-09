@@ -17,6 +17,7 @@ import '../models/ArticuloModel.dart';
 
 class Constants {
   //static String baseUrl = 'https://apis-tfg.onrender.com';
+  //static String baseUrl = 'https://apistfg.onrender.com';
   static String baseUrl = 'http://10.0.2.2:4040';
   static String loginEndpoint = '/inicioSesion';
   static String listaArticulosEndpoint = '/listaArticulos';
@@ -94,7 +95,9 @@ class ApiService {
             respuestaCreacionPedidoModelFromJson(response.body);
         return _respuesta;
       } else {
-        return null;
+        RespuestaCreacionPedidoModel _respuesta =
+            respuestaCreacionPedidoModelFromJson(response.body);
+        return _respuesta;
       }
     } catch (e) {
       log(e.toString());

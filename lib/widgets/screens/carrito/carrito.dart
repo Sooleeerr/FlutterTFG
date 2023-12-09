@@ -52,21 +52,37 @@ class _CarritoState extends State<Carrito> {
     _getCarrito();
   }
 
-  Future<String?> _aceptarPedido() async {
+  Future<RespuestaCreacionPedidoModel> _crearPedido() async {
     RespuestaCreacionPedidoModel? registroOK =
         await ApiService().realizarPedido(_usuario, _token);
-    if (registroOK != null) {
-      _getCarrito();
-      // ignore: avoid_single_cascade_in_expression_statements
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => DetallePedido(
-                numPedido: registroOK.idPedido.toString(),
-                vieneCompra: true,
-              )))
-        ..then((value) => widget.callback(0));
-      return registroOK.idPedido;
+    return Future.value(registroOK);
+  }
+
+  void _aceptarPedido() async {
+    String textoSnackBar;
+    RespuestaCreacionPedidoModel? pedido = await _crearPedido();
+
+    if (pedido != null) {
+      textoSnackBar = pedido.mensaje!;
+      if (pedido.pedidoOK!) {
+        _getCarrito();
+        // ignore: avoid_single_cascade_in_expression_statements
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => DetallePedido(
+                  numPedido: pedido.idPedido.toString(),
+                  vieneCompra: true,
+                )))
+          ..then((value) => widget.callback(0));
+        return;
+      } else {
+        Navigator.pop(context);
+      }
+      final snackBar = SnackBar(
+        content: Text(textoSnackBar),
+      );
+
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
-    return null;
   }
 
   Future<void> _realizarPedido(BuildContext context) async {
@@ -81,9 +97,7 @@ class _CarritoState extends State<Carrito> {
               children: <Widget>[
                 ElevatedButton(
                   onPressed: () {
-                    Future<String?> _respuesta = _aceptarPedido();
-
-                    ;
+                    _aceptarPedido();
                   },
                   child: const Text('Pagar'),
                 ),
@@ -207,14 +221,10 @@ class _CarritoState extends State<Carrito> {
                             onPressed: () {
                               _realizarPedido(context);
                             },
-                            child: Row(
+                            child: const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                const Text("Pagar con  "),
-                                Image.asset(
-                                  'assets/images/paypal.png',
-                                  scale: 4,
-                                ),
+                                Text("Pagar"),
                               ],
                             ),
                           ),

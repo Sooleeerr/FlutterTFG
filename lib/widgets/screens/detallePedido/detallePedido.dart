@@ -151,6 +151,7 @@ class _DetallePedidoState extends State<DetallePedido> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
                               child: Text.rich(

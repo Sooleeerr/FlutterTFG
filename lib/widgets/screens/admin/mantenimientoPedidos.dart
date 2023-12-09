@@ -15,10 +15,7 @@ class MantenimientoPedidos extends StatefulWidget {
 }
 
 class _MantenimientoPedidosState extends State<MantenimientoPedidos> {
-  String _nombre = "";
   List<ListaPedidosModel>? listaPedidos;
-
-  late SharedPreferences _prefs;
 
   @override
   void initState() {
@@ -36,9 +33,9 @@ class _MantenimientoPedidosState extends State<MantenimientoPedidos> {
   @override
   Widget build(BuildContext context) {
     return (listaPedidos == null)
-        ? Scaffold(
-            backgroundColor: const Color(0xFFF5F6F9),
-            body: const Center(
+        ? const Scaffold(
+            backgroundColor: Color(0xFFF5F6F9),
+            body: Center(
               child: CircularProgressIndicator(),
             ),
           )

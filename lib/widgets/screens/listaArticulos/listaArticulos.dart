@@ -64,11 +64,11 @@ class _ListaArticulosState extends State<ListaArticulos> {
                 ),
                 child: Image.asset(
                   "assets/images/mundomovil_round.png",
-                  scale: 1.75,
+                  scale: 1.2,
                 ),
               ),
               const Text("Mundo Móvil"),
-              const SizedBox(width: 120),
+              const SizedBox(width: 80),
               IconButton(
                 iconSize: 22,
                 icon: const Icon(Icons.swap_vert),

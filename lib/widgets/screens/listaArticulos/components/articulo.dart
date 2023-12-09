@@ -35,7 +35,7 @@ class Articulo extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                flex: 8,
+                flex: 6,
                 child: Image(
                   image: NetworkImage(articulo.fotoArticulo!),
                 ),
@@ -47,11 +47,16 @@ class Articulo extends StatelessWidget {
                 flex: 2,
                 child: Container(
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    articulo.nombreArticulo!,
-                    style: (!miniatura)
-                        ? Theme.of(context).textTheme.bodyMedium
-                        : Theme.of(context).textTheme.bodySmall,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      articulo.nombreArticulo!,
+                      style: TextStyle(
+                        color: kTextColor,
+                        fontSize: (!miniatura) ? 13.0 : 10.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -85,7 +90,7 @@ class Articulo extends StatelessWidget {
                   "Últimas unidades",
                   style: TextStyle(
                     color: Colors.red[600],
-                    fontSize: (!miniatura) ? 14.0 : 10.0,
+                    fontSize: (!miniatura) ? 12.0 : 8.0,
                   ),
                 ),
               if (articulo.stock! == 0)
@@ -93,7 +98,7 @@ class Articulo extends StatelessWidget {
                   "No hay stock",
                   style: TextStyle(
                     color: Colors.grey,
-                    fontSize: (!miniatura) ? 14.0 : 10.0,
+                    fontSize: (!miniatura) ? 12.0 : 8.0,
                   ),
                 )
             ],

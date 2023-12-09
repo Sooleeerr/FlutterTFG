@@ -119,7 +119,7 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
                                 Text(
                                   articulo.nombreArticulo!,
                                   style: const TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 16,
                                     fontWeight: FontWeight.w600,
                                     color: kTextColor,
                                   ),
@@ -136,7 +136,7 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
                                                     .toString() +
                                                 " €",
                                             style: const TextStyle(
-                                              fontSize: 18,
+                                              fontSize: 16,
                                               fontWeight: FontWeight.w600,
                                               decoration:
                                                   TextDecoration.lineThrough,
@@ -146,7 +146,7 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
                                           Text(
                                             "Precio anterior",
                                             style: const TextStyle(
-                                              fontSize: 14,
+                                              fontSize: 12,
                                               fontWeight: FontWeight.w600,
                                               color: kTextColor,
                                             ),
@@ -159,7 +159,7 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
                                           articulo.precioArticulo.toString() +
                                               " €",
                                           style: const TextStyle(
-                                            fontSize: 18,
+                                            fontSize: 16,
                                             fontWeight: FontWeight.w600,
                                             color: kPrimaryColor,
                                           ),
@@ -168,7 +168,7 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
                                           Text(
                                             "Promoción",
                                             style: const TextStyle(
-                                              fontSize: 14,
+                                              fontSize: 12,
                                               fontWeight: FontWeight.w600,
                                               color: kTextColor,
                                             ),
@@ -177,7 +177,7 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
                                           Text(
                                             "Precio",
                                             style: const TextStyle(
-                                              fontSize: 14,
+                                              fontSize: 12,
                                               fontWeight: FontWeight.w600,
                                               color: kTextColor,
                                             ),
@@ -192,12 +192,15 @@ class _DetalleArticuloState extends State<DetalleArticulo> {
                                       SizedBox(
                                         height: 20,
                                       ),
-                                      Text(
-                                        "Últimas unidades. Sólo quedan " +
-                                            articulo.stock.toString(),
-                                        style: TextStyle(
-                                          color: Colors.red[600],
-                                          fontSize: 14.0,
+                                      FittedBox(
+                                        fit: BoxFit.scaleDown,
+                                        child: Text(
+                                          "Últimas unidades. Sólo quedan " +
+                                              articulo.stock.toString(),
+                                          style: TextStyle(
+                                            color: Colors.red[600],
+                                            fontSize: 12.0,
+                                          ),
                                         ),
                                       ),
                                     ],
