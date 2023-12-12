@@ -118,7 +118,6 @@ class _OrdenacionState extends State<Ordenacion> {
               },
               child: Text(
                 'Ordenar',
-                style: TextStyle(color: Colors.black),
               ),
             ),
           ),

@@ -151,7 +151,6 @@ class _ModificacionDatosState extends State<ModificacionDatos> {
                     },
                     child: const Text(
                       'Modificar',
-                      style: TextStyle(color: Colors.black),
                     ),
                   ),
                   const SizedBox(height: 20.0),
