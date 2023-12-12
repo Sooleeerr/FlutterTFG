@@ -157,7 +157,8 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Expanded(
+                    const FittedBox(
+                      fit: BoxFit.scaleDown,
                       child: Text(
                         "¿Aún no tienes cuenta?   ",
                         style: TextStyle(fontSize: 16),
@@ -169,7 +170,8 @@ class _LoginPageState extends State<LoginPage> {
                         MaterialPageRoute(
                             builder: (context) => const Registro()),
                       ),
-                      child: const Expanded(
+                      child: const FittedBox(
+                        fit: BoxFit.scaleDown,
                         child: Text(
                           "Registrate",
                           style: TextStyle(fontSize: 16, color: kPrimaryColor),

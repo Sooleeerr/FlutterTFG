@@ -13,7 +13,7 @@ import 'package:tfg/models/respuesta_creacion_pedido.dart';
 import 'package:tfg/models/usuario_model.dart';
 import 'package:tfg/models/carrito_model.dart';
 
-import '../models/ArticuloModel.dart';
+import '../models/articulo_model.dart';
 
 class Constants {
   //static String baseUrl = 'https://apis-tfg.onrender.com';

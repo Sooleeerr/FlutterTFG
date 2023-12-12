@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:tfg/models/ArticuloModel.dart';
+import 'package:tfg/models/articulo_model.dart';
 
 List<ArticulosRelacionadosModel> articulosRelacionadosModelFromJson(
         String str) =>

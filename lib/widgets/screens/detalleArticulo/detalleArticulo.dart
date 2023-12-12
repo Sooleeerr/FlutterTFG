@@ -15,7 +15,7 @@ import 'package:tfg/widgets/screens/listaArticulos/components/articulo.dart';
 import 'package:tfg/widgets/components/RoundedContainer.dart';
 import 'package:tfg/widgets/components/TopRoundedContainer.dart';
 
-import 'package:tfg/models/ArticuloModel.dart';
+import 'package:tfg/models/articulo_model.dart';
 
 class DetalleArticulo extends StatefulWidget {
   final String idArticulo;

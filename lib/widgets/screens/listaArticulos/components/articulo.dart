@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:tfg/models/ArticuloModel.dart';
+import 'package:tfg/models/articulo_model.dart';
 import 'package:tfg/widgets/screens/detalleArticulo/detalleArticulo.dart';
 import 'package:tfg/constants.dart';
 

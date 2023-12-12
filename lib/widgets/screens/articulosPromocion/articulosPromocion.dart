@@ -4,7 +4,7 @@ import 'package:tfg/models/articulos_visitados_model.dart';
 import 'package:tfg/widgets/screens/listaArticulos/components/articulo.dart';
 import 'package:tfg/widgets/screens/articulosPromocion/components/articulos_visitados.dart';
 import 'package:tfg/widgets/components/image_tag.dart';
-import '../../../models/ArticuloModel.dart';
+import '../../../models/articulo_model.dart';
 import '../../../services/ApiService.dart';
 
 class ListaArticulosPromocion extends StatefulWidget {

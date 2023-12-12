@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tfg/constants.dart';
-import 'package:tfg/models/ArticuloModel.dart';
+import 'package:tfg/models/articulo_model.dart';
 import 'package:tfg/services/ApiService.dart';
 import 'package:tfg/widgets/components/appBarAtras.dart';
 import 'package:tfg/widgets/screens/admin/modificaArticulo.dart';

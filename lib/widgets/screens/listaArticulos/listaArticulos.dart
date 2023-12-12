@@ -8,7 +8,7 @@ import 'package:tfg/widgets/screens/listaArticulos/components/articulo.dart';
 import 'package:tfg/widgets/screens/filtrado/filtrado.dart';
 
 import 'package:tfg/widgets/screens/ordenacion/ordenacion.dart';
-import '../../../models/ArticuloModel.dart';
+import '../../../models/articulo_model.dart';
 import '../../../services/ApiService.dart';
 
 class ListaArticulos extends StatefulWidget {
